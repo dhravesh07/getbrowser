@@ -22,7 +22,7 @@ export default function SmoothScroll({ children }: SmoothScrollProps) {
         className="fixed top-0 left-0 right-0 h-[2px] z-[100] origin-left"
         style={{
           scaleX,
-          background: "linear-gradient(90deg, #317AE7, #6715FF, #FB5607)",
+          background: "linear-gradient(90deg, #4C1D95, #F5A623, #FFD700)",
         }}
       />
       {children}

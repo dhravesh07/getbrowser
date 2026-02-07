@@ -4,6 +4,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import Link from "next/link";
 import ScrollReveal from "@/components/ui/ScrollReveal";
+import MagneticButton from "@/components/ui/MagneticButton";
 
 const expertise = [
   "Vedic Astrology (Jyotish Shastra)",
@@ -25,46 +26,127 @@ export default function AboutPreviewSection() {
 
   return (
     <section ref={sectionRef} className="section-padding relative overflow-hidden">
-      {/* Background */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_right,rgba(49,122,231,0.06)_0%,transparent_50%)]" />
+      {/* Star field background */}
+      <div className="absolute inset-0 star-field opacity-40" />
+
+      {/* Radial glow */}
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_right,rgba(245,166,35,0.04)_0%,transparent_50%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_left,rgba(124,58,237,0.05)_0%,transparent_50%)]" />
 
       <div className="container-custom relative">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-          {/* Visual side */}
+          {/* Left: Decorative profile card */}
           <ScrollReveal animation="slideLeft">
             <motion.div style={{ y: imageY }} className="relative">
-              {/* Decorative card */}
               <div className="relative aspect-[4/5] max-w-md mx-auto">
                 {/* Background glow */}
-                <div className="absolute inset-0 bg-gradient-to-br from-primary-500/20 via-accent-purple/10 to-transparent rounded-3xl blur-3xl" />
+                <div className="absolute inset-0 bg-gradient-to-br from-astro-gold/15 via-cosmic-700/10 to-transparent rounded-3xl blur-3xl" />
 
-                {/* Main card */}
-                <div className="relative h-full glass-card rounded-3xl p-8 flex flex-col justify-between overflow-hidden">
-                  {/* Decorative orbits */}
-                  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64">
-                    <motion.div
+                {/* Main card with astro-card styling and gold border */}
+                <div className="relative h-full astro-card gold-border rounded-3xl p-8 flex flex-col justify-between overflow-hidden">
+                  {/* Star field inside card */}
+                  <div className="absolute inset-0 star-field opacity-20" />
+
+                  {/* Rotating zodiac orbit rings */}
+                  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-72 h-72 pointer-events-none">
+                    <motion.svg
                       animate={{ rotate: 360 }}
-                      transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
-                      className="w-full h-full rounded-full border border-white/[0.05]"
-                    />
+                      transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
+                      viewBox="0 0 300 300"
+                      className="w-full h-full"
+                    >
+                      <circle
+                        cx="150"
+                        cy="150"
+                        r="140"
+                        fill="none"
+                        stroke="rgba(245,166,35,0.15)"
+                        strokeWidth="1"
+                        strokeDasharray="8 6"
+                      />
+                      {/* Zodiac marker dots on outer ring */}
+                      {[...Array(12)].map((_, i) => {
+                        const angle = (i * 30 * Math.PI) / 180;
+                        const x = 150 + 140 * Math.cos(angle);
+                        const y = 150 + 140 * Math.sin(angle);
+                        return (
+                          <circle
+                            key={`outer-${i}`}
+                            cx={x}
+                            cy={y}
+                            r="2.5"
+                            fill={i % 3 === 0 ? "rgba(255,215,0,0.7)" : "rgba(245,166,35,0.4)"}
+                          />
+                        );
+                      })}
+                    </motion.svg>
                   </div>
-                  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-40 h-40">
-                    <motion.div
+
+                  {/* Second orbit ring - counter-rotating */}
+                  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-48 pointer-events-none">
+                    <motion.svg
                       animate={{ rotate: -360 }}
-                      transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-                      className="w-full h-full rounded-full border border-primary-500/10"
-                    />
+                      transition={{ duration: 28, repeat: Infinity, ease: "linear" }}
+                      viewBox="0 0 200 200"
+                      className="w-full h-full"
+                    >
+                      <circle
+                        cx="100"
+                        cy="100"
+                        r="90"
+                        fill="none"
+                        stroke="rgba(255,215,0,0.1)"
+                        strokeWidth="1"
+                      />
+                      {/* Inner ring markers */}
+                      {[...Array(8)].map((_, i) => {
+                        const angle = (i * 45 * Math.PI) / 180;
+                        const x = 100 + 90 * Math.cos(angle);
+                        const y = 100 + 90 * Math.sin(angle);
+                        return (
+                          <circle
+                            key={`inner-${i}`}
+                            cx={x}
+                            cy={y}
+                            r="1.5"
+                            fill="rgba(245,166,35,0.5)"
+                          />
+                        );
+                      })}
+                    </motion.svg>
+                  </div>
+
+                  {/* Third innermost orbit ring */}
+                  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-28 h-28 pointer-events-none">
+                    <motion.svg
+                      animate={{ rotate: 360 }}
+                      transition={{ duration: 18, repeat: Infinity, ease: "linear" }}
+                      viewBox="0 0 120 120"
+                      className="w-full h-full"
+                    >
+                      <circle
+                        cx="60"
+                        cy="60"
+                        r="50"
+                        fill="none"
+                        stroke="rgba(255,215,0,0.08)"
+                        strokeWidth="0.8"
+                        strokeDasharray="4 4"
+                      />
+                    </motion.svg>
                   </div>
 
                   {/* Center content */}
                   <div className="relative z-10 text-center flex-1 flex flex-col items-center justify-center">
-                    <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-primary-500 via-accent-purple to-accent-orange flex items-center justify-center mb-6 animate-glow">
-                      <span className="text-3xl font-bold text-white">A</span>
+                    {/* Gold avatar */}
+                    <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-astro-gold via-astro-sun to-astro-amber flex items-center justify-center mb-6 animate-glow-gold shadow-lg shadow-astro-gold/20">
+                      <span className="text-3xl font-bold text-sky-deep">A</span>
                     </div>
                     <h3 className="text-xl font-bold text-white mb-2">
-                      Acharya Prateek Bhola
+                      Acharya{" "}
+                      <span className="gold-text">Prateek Bhola</span>
                     </h3>
-                    <p className="text-sm text-white/40">
+                    <p className="text-sm text-cosmic-200/60">
                       Vedic Astrology Expert
                     </p>
                   </div>
@@ -72,16 +154,16 @@ export default function AboutPreviewSection() {
                   {/* Bottom stats */}
                   <div className="relative z-10 grid grid-cols-3 gap-3 mt-6">
                     {[
-                      { label: "Courses", icon: "📚" },
-                      { label: "Webinars", icon: "🎥" },
-                      { label: "Articles", icon: "✍️" },
+                      { label: "Courses", icon: "\u2727" },
+                      { label: "Webinars", icon: "\u2726" },
+                      { label: "Articles", icon: "\u2729" },
                     ].map((item) => (
                       <div
                         key={item.label}
-                        className="text-center p-3 rounded-xl bg-white/[0.03] border border-white/[0.05]"
+                        className="text-center p-3 rounded-xl bg-astro-gold/5 border border-astro-gold/10"
                       >
-                        <div className="text-lg mb-1">{item.icon}</div>
-                        <div className="text-[10px] text-white/40">
+                        <div className="text-lg mb-1 text-astro-gold">{item.icon}</div>
+                        <div className="text-[10px] text-cosmic-200/50">
                           {item.label}
                         </div>
                       </div>
@@ -92,10 +174,10 @@ export default function AboutPreviewSection() {
             </motion.div>
           </ScrollReveal>
 
-          {/* Content side */}
+          {/* Right: Content side */}
           <motion.div style={{ y: contentY }}>
             <ScrollReveal animation="slideRight">
-              <span className="text-xs font-semibold text-primary-400 uppercase tracking-[0.2em] mb-4 block">
+              <span className="text-xs font-semibold text-astro-gold uppercase tracking-[0.2em] mb-4 block">
                 About the Guru
               </span>
             </ScrollReveal>
@@ -103,26 +185,32 @@ export default function AboutPreviewSection() {
             <ScrollReveal animation="slideRight" delay={1}>
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6 text-balance">
                 Guided by{" "}
-                <span className="gradient-text">Ancient Knowledge</span>
+                <span className="gold-text">Ancient Knowledge</span>
               </h2>
             </ScrollReveal>
 
             <ScrollReveal animation="slideRight" delay={2}>
-              <p className="text-white/40 leading-relaxed mb-6">
+              <p className="text-cosmic-200/50 leading-relaxed mb-6">
                 Acharya Prateek Bhola is a dedicated Vedic Astrology practitioner
                 and educator, bringing the profound wisdom of Jyotish Shastra to
                 modern learners. Through courses, webinars, and insightful
                 articles, he makes complex astrological concepts accessible and
-                practical.
+                practical for seekers at every level.
               </p>
             </ScrollReveal>
 
             <ScrollReveal animation="slideRight" delay={3}>
-              <p className="text-white/40 leading-relaxed mb-8">
+              <p className="text-cosmic-200/50 leading-relaxed mb-8">
                 His expertise spans Vedic Astrology, Planetary Science,
                 Numerology, and Occult Science, offering a holistic approach to
-                understanding cosmic influences on human life.
+                understanding cosmic influences on human life. Under his guidance,
+                students discover the celestial patterns that shape destiny.
               </p>
+            </ScrollReveal>
+
+            {/* Cosmic divider */}
+            <ScrollReveal animation="slideRight" delay={3}>
+              <div className="cosmic-divider mb-8" />
             </ScrollReveal>
 
             {/* Expertise tags */}
@@ -131,7 +219,7 @@ export default function AboutPreviewSection() {
                 {expertise.map((item) => (
                   <span
                     key={item}
-                    className="text-xs px-4 py-2 rounded-full bg-white/[0.04] border border-white/[0.08] text-white/50"
+                    className="text-xs px-4 py-2 rounded-full bg-astro-gold/5 border border-astro-gold/15 text-astro-gold/80 transition-colors duration-300 hover:bg-astro-gold/10 hover:border-astro-gold/25"
                   >
                     {item}
                   </span>
@@ -140,9 +228,11 @@ export default function AboutPreviewSection() {
             </ScrollReveal>
 
             <ScrollReveal animation="slideRight" delay={5}>
-              <Link href="/about" className="btn-primary">
-                <span>Learn More</span>
-              </Link>
+              <MagneticButton>
+                <Link href="/about" className="btn-primary">
+                  <span>Learn More</span>
+                </Link>
+              </MagneticButton>
             </ScrollReveal>
           </motion.div>
         </div>

@@ -9,30 +9,38 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        primary: {
-          50: "#EEF4FF",
-          100: "#D9E6FF",
-          200: "#BBCFFF",
-          300: "#8BABFF",
-          400: "#547EFF",
-          500: "#317AE7",
-          600: "#1A5FCC",
-          700: "#134BA5",
-          800: "#0F3A80",
-          900: "#0A2659",
+        cosmic: {
+          50: "#F5F0FF",
+          100: "#EBE0FF",
+          200: "#D4BFFF",
+          300: "#B794FF",
+          400: "#9B6DFF",
+          500: "#7C3AED",
+          600: "#6D28D9",
+          700: "#5B21B6",
+          800: "#4C1D95",
+          900: "#3B0764",
+          950: "#1E0038",
         },
-        accent: {
-          orange: "#FB5607",
-          purple: "#6715FF",
-          lime: "#D8FD46",
+        astro: {
+          gold: "#F5A623",
+          amber: "#E8930C",
+          bronze: "#C87533",
+          sun: "#FFD700",
+          moon: "#C0C0C0",
         },
-        surface: {
-          50: "#FAFBFF",
-          100: "#F1F4F9",
-          200: "#E4E9F2",
-          800: "#1A1F36",
-          900: "#0D1025",
-          950: "#080A18",
+        sky: {
+          deep: "#0F0A2E",
+          midnight: "#130D3A",
+          twilight: "#1A1145",
+          dusk: "#231755",
+          nebula: "#2D1B69",
+        },
+        element: {
+          fire: "#E74C3C",
+          earth: "#27AE60",
+          air: "#3498DB",
+          water: "#2980B9",
         },
       },
       fontFamily: {
@@ -44,8 +52,11 @@ const config: Config = {
         "fade-in": "fadeIn 0.6s ease-out forwards",
         "slide-in-left": "slideInLeft 0.6s ease-out forwards",
         "slide-in-right": "slideInRight 0.6s ease-out forwards",
-        float: "float 6s ease-in-out infinite",
-        glow: "glow 3s ease-in-out infinite alternate",
+        "float": "float 6s ease-in-out infinite",
+        "glow-gold": "glowGold 3s ease-in-out infinite alternate",
+        "spin-slow": "spin 60s linear infinite",
+        "spin-slower": "spin 90s linear infinite",
+        "twinkle": "twinkle 3s ease-in-out infinite",
       },
       keyframes: {
         fadeUp: {
@@ -68,9 +79,13 @@ const config: Config = {
           "0%, 100%": { transform: "translateY(0)" },
           "50%": { transform: "translateY(-20px)" },
         },
-        glow: {
-          "0%": { boxShadow: "0 0 20px rgba(49,122,231,0.3)" },
-          "100%": { boxShadow: "0 0 40px rgba(49,122,231,0.6)" },
+        glowGold: {
+          "0%": { boxShadow: "0 0 20px rgba(245,166,35,0.25)" },
+          "100%": { boxShadow: "0 0 40px rgba(255,215,0,0.45)" },
+        },
+        twinkle: {
+          "0%, 100%": { opacity: "0.3", transform: "scale(1)" },
+          "50%": { opacity: "1", transform: "scale(1.3)" },
         },
       },
     },
