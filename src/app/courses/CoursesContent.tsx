@@ -86,7 +86,7 @@ export default function CoursesContent() {
       <section className="pt-32 pb-16 md:pt-40 md:pb-20">
         <div className="container-custom">
           <ScrollReveal>
-            <span className="font-sans text-xs uppercase tracking-[0.25em] text-saffron mb-5 block">
+            <span className="font-sans text-sm uppercase tracking-widest text-saffron mb-5 block">
               Learn
             </span>
           </ScrollReveal>
@@ -96,7 +96,7 @@ export default function CoursesContent() {
             </h1>
           </ScrollReveal>
           <ScrollReveal delay={2}>
-            <p className="font-sans text-base md:text-lg text-parchment-dim max-w-lg leading-relaxed mb-8">
+            <p className="font-sans text-lg md:text-xl text-parchment-dim max-w-lg leading-relaxed mb-8">
               Master the ancient sciences through structured, modern learning
               paths.
             </p>
@@ -121,7 +121,7 @@ export default function CoursesContent() {
                 <div className="group cursor-pointer transition-transform duration-500 ease-out hover:translate-x-2 md:hover:translate-x-4">
                   <div className="flex items-start gap-5 md:gap-8 lg:gap-12 py-7 md:py-9">
                     {/* Large Number */}
-                    <span className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-saffron/30 leading-none select-none shrink-0 w-12 sm:w-16 md:w-20 lg:w-24 transition-colors duration-500 group-hover:text-saffron">
+                    <span className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-saffron/70 leading-none select-none shrink-0 w-12 sm:w-16 md:w-20 lg:w-24 transition-colors duration-500 group-hover:text-saffron">
                       {course.number}
                     </span>
 
@@ -129,23 +129,23 @@ export default function CoursesContent() {
                     <div className="flex-1 min-w-0 pt-1 md:pt-2">
                       {/* Title Row */}
                       <div className="flex flex-col sm:flex-row sm:items-baseline sm:gap-4 mb-2">
-                        <h2 className="font-serif text-xl sm:text-2xl md:text-3xl text-parchment leading-tight transition-colors duration-500 group-hover:text-parchment">
+                        <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl text-parchment leading-tight transition-colors duration-500 group-hover:text-parchment">
                           {course.title}
                         </h2>
                         <span
-                          className={`font-sans text-xs uppercase tracking-[0.15em] mt-1.5 sm:mt-0 shrink-0 ${levelStyle[course.level]}`}
+                          className={`font-sans text-sm uppercase tracking-widest mt-1.5 sm:mt-0 shrink-0 ${levelStyle[course.level]}`}
                         >
                           {course.level}
                         </span>
                       </div>
 
                       {/* Meta */}
-                      <p className="font-sans text-xs text-parchment-muted mb-3">
+                      <p className="font-sans text-sm text-parchment-muted mb-3">
                         {course.modules} modules &middot; {course.hours} hours
                       </p>
 
                       {/* Description */}
-                      <p className="font-sans text-sm md:text-base text-parchment-muted leading-relaxed max-w-2xl">
+                      <p className="font-sans text-base md:text-lg text-parchment-muted leading-relaxed max-w-2xl">
                         {course.description}
                       </p>
                     </div>
@@ -167,10 +167,10 @@ export default function CoursesContent() {
             <div className="flex items-center justify-center gap-12 sm:gap-16 md:gap-24">
               {stats.map((stat, i) => (
                 <div key={stat.label} className="text-center">
-                  <span className="block font-serif text-4xl sm:text-5xl md:text-6xl text-saffron leading-none">
+                  <span className="block font-serif text-5xl sm:text-6xl md:text-7xl text-saffron leading-none">
                     {stat.value}
                   </span>
-                  <span className="block font-sans text-xs uppercase tracking-[0.15em] text-parchment-muted mt-3">
+                  <span className="block font-sans text-sm uppercase tracking-widest text-parchment-muted mt-3">
                     {stat.label}
                   </span>
                 </div>

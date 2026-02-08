@@ -168,12 +168,12 @@ function SmallCard({ service, index }: { service: Service; index: number }) {
           </div>
 
           {/* Title */}
-          <h3 className="font-serif text-lg text-parchment mb-2 group-hover:text-saffron-light transition-colors duration-300">
+          <h3 className="font-serif text-xl text-parchment mb-2 group-hover:text-saffron-light transition-colors duration-300">
             {service.title}
           </h3>
 
           {/* Description */}
-          <p className="font-sans text-sm text-parchment-muted leading-relaxed">
+          <p className="font-sans text-base text-parchment-muted leading-relaxed">
             {service.description}
           </p>
         </div>
@@ -237,7 +237,7 @@ export default function ServicesSection() {
 
                 {/* Featured badge */}
                 <div className="relative z-10 mb-auto">
-                  <span className="inline-block text-[10px] font-sans uppercase tracking-[0.2em] text-saffron/70 border border-saffron/20 px-3 py-1 rounded-sm">
+                  <span className="inline-block text-sm font-sans uppercase tracking-[0.2em] text-saffron/70 border border-saffron/20 px-3 py-1 rounded-sm">
                     Featured
                   </span>
                 </div>
@@ -246,13 +246,13 @@ export default function ServicesSection() {
                 <div className="relative z-10 mt-8">
                   <div className="flex items-end justify-between gap-4">
                     <div>
-                      <span className="block font-serif text-4xl md:text-5xl text-parchment-faint/30 mb-3">
+                      <span className="block font-serif text-4xl md:text-5xl text-parchment-faint/70 mb-3">
                         01
                       </span>
-                      <h3 className="font-serif text-2xl md:text-3xl text-parchment mb-3 group-hover:text-saffron-light transition-colors duration-300">
+                      <h3 className="font-serif text-3xl md:text-4xl text-parchment mb-3 group-hover:text-saffron-light transition-colors duration-300">
                         {featured.title}
                       </h3>
-                      <p className="font-sans text-sm text-parchment-muted leading-relaxed max-w-xs">
+                      <p className="font-sans text-base text-parchment-muted leading-relaxed max-w-xs">
                         {featured.description}
                       </p>
                     </div>
@@ -292,10 +292,10 @@ export default function ServicesSection() {
                       06
                     </span>
                     <div>
-                      <h3 className="font-serif text-lg text-parchment group-hover:text-saffron-light transition-colors duration-300">
+                      <h3 className="font-serif text-xl text-parchment group-hover:text-saffron-light transition-colors duration-300">
                         {rest[4].title}
                       </h3>
-                      <p className="font-sans text-sm text-parchment-muted mt-1">
+                      <p className="font-sans text-base text-parchment-muted mt-1">
                         {rest[4].description}
                       </p>
                     </div>

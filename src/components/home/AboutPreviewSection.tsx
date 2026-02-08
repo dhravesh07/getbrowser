@@ -55,7 +55,7 @@ export default function AboutPreviewSection() {
 
                 {/* Name overlay at bottom */}
                 <div className="absolute bottom-6 left-8 lg:bottom-10 lg:left-10 z-10">
-                  <span className="text-parchment-muted font-sans text-[11px] tracking-[0.2em] uppercase block">
+                  <span className="text-parchment-muted font-sans text-sm tracking-[0.2em] uppercase block">
                     Acharya
                   </span>
                   <span className="text-parchment font-serif text-xl lg:text-2xl tracking-wide block mt-0.5">
@@ -66,7 +66,7 @@ export default function AboutPreviewSection() {
 
                 {/* Small descriptor in top-right corner */}
                 <div className="absolute top-5 right-6 z-10 hidden lg:block">
-                  <span className="text-parchment-faint font-sans text-[10px] tracking-[0.15em] uppercase drop-shadow-sm">
+                  <span className="text-parchment-faint font-sans text-sm tracking-[0.15em] uppercase drop-shadow-sm">
                     Vedic Astrology Expert
                   </span>
                 </div>
@@ -93,7 +93,7 @@ export default function AboutPreviewSection() {
             </ScrollReveal>
 
             <ScrollReveal animation="fadeUp" delay={2}>
-              <p className="font-sans text-parchment-muted text-[15px] leading-[1.8] mb-5 max-w-lg">
+              <p className="font-sans text-parchment-muted text-lg leading-[1.8] mb-5 max-w-lg">
                 Acharya Prateek Bhola is a dedicated Vedic Astrology practitioner
                 and educator, bringing the profound wisdom of Jyotish Shastra to
                 modern learners through courses, webinars, and insightful
@@ -102,7 +102,7 @@ export default function AboutPreviewSection() {
             </ScrollReveal>
 
             <ScrollReveal animation="fadeUp" delay={3}>
-              <p className="font-sans text-parchment-muted text-[15px] leading-[1.8] mb-9 max-w-lg">
+              <p className="font-sans text-parchment-muted text-lg leading-[1.8] mb-9 max-w-lg">
                 His expertise spans Vedic Astrology, Planetary Science,
                 Numerology, and Occult Science, offering a holistic approach to
                 understanding cosmic influences on human life.
@@ -123,7 +123,7 @@ export default function AboutPreviewSection() {
                     className="flex items-center gap-4 group"
                   >
                     <span className="w-px h-5 bg-copper/50 group-hover:h-7 group-hover:bg-saffron transition-all duration-300 shrink-0" />
-                    <span className="font-sans text-sm text-parchment-dim group-hover:text-parchment transition-colors duration-300">
+                    <span className="font-sans text-base text-parchment-dim group-hover:text-parchment transition-colors duration-300">
                       {item}
                     </span>
                   </li>

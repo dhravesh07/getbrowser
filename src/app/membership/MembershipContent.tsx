@@ -49,7 +49,7 @@ export default function MembershipContent() {
       <section className="pb-20">
         <div className="container-custom max-w-3xl">
           <ScrollReveal animation="fadeUp">
-            <p className="text-parchment-muted text-base leading-relaxed font-sans">
+            <p className="text-parchment-muted text-lg leading-relaxed font-sans">
               Become part of a growing community of seekers and practitioners.
               Whether you are just beginning to explore Vedic Astrology or
               deepening an existing practice, membership gives you the structure,
@@ -72,7 +72,7 @@ export default function MembershipContent() {
             {/* Seeker Tier */}
             <motion.div variants={staggerItem}>
               <div className="bg-void-surface border border-stone-faint/60 p-8 sm:p-10 h-full">
-                <span className="text-parchment-faint text-xs font-sans uppercase tracking-wider block mb-4">
+                <span className="text-parchment-faint text-sm font-sans uppercase tracking-wider block mb-4">
                   Free
                 </span>
                 <h3 className="text-2xl sm:text-3xl text-parchment mb-6">
@@ -82,7 +82,7 @@ export default function MembershipContent() {
                   {seekerBenefits.map((benefit) => (
                     <li
                       key={benefit}
-                      className="text-parchment-muted text-sm font-sans leading-relaxed flex items-start gap-3"
+                      className="text-parchment-muted text-base font-sans leading-relaxed flex items-start gap-3"
                     >
                       <span className="text-stone w-1 h-1 rounded-full bg-stone mt-2 shrink-0" />
                       {benefit}
@@ -95,7 +95,7 @@ export default function MembershipContent() {
             {/* Sadhaka Tier */}
             <motion.div variants={staggerItem}>
               <div className="bg-void-surface border border-stone-faint/60 border-l-2 border-l-saffron p-8 sm:p-10 h-full">
-                <span className="text-saffron text-xs font-sans uppercase tracking-wider block mb-4">
+                <span className="text-saffron text-sm font-sans uppercase tracking-wider block mb-4">
                   Premium
                 </span>
                 <h3 className="text-2xl sm:text-3xl text-parchment mb-6">
@@ -105,7 +105,7 @@ export default function MembershipContent() {
                   {sadhakaBenefits.map((benefit) => (
                     <li
                       key={benefit}
-                      className="text-parchment-muted text-sm font-sans leading-relaxed flex items-start gap-3"
+                      className="text-parchment-muted text-base font-sans leading-relaxed flex items-start gap-3"
                     >
                       <span className="w-1 h-1 rounded-full bg-saffron mt-2 shrink-0" />
                       {benefit}

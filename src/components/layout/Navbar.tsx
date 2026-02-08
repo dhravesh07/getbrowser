@@ -54,7 +54,7 @@ export default function Navbar() {
             />
             <div className="flex flex-col">
               <span className="text-parchment text-sm font-serif font-semibold tracking-wide">Ankyotissh</span>
-              <span className="text-[9px] text-parchment-muted tracking-[0.2em] uppercase font-sans">Vedic Astrology</span>
+              <span className="text-sm text-parchment-muted tracking-[0.2em] uppercase font-sans">Vedic Astrology</span>
             </div>
           </Link>
 
@@ -64,7 +64,7 @@ export default function Navbar() {
               <Link
                 key={link.name}
                 href={link.href}
-                className="px-4 py-2 text-[13px] font-sans text-parchment-muted hover:text-saffron transition-colors duration-300"
+                className="px-4 py-2 text-base font-sans text-parchment-muted hover:text-saffron transition-colors duration-300"
               >
                 {link.name}
               </Link>
@@ -72,7 +72,7 @@ export default function Navbar() {
           </div>
 
           <div className="hidden lg:block">
-            <Link href="/courses" className="btn-primary text-xs">
+            <Link href="/courses" className="btn-primary">
               Get Started
             </Link>
           </div>

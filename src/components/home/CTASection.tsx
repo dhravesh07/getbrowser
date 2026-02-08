@@ -88,7 +88,7 @@ export default function CTASection() {
         <motion.div style={{ y: textY }} className="max-w-3xl">
           {/* Main heading — large serif, the focal point */}
           <ScrollReveal>
-            <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-[4.25rem] font-serif leading-[1.1] tracking-tight mb-6">
+            <h2 className="text-5xl sm:text-6xl md:text-7xl lg:text-[5rem] font-serif leading-[1.1] tracking-tight mb-6">
               <span className="text-parchment">Begin Your</span>
               <br />
               <span className="gradient-text">Journey Into the Stars</span>
@@ -97,7 +97,7 @@ export default function CTASection() {
 
           {/* Single line of muted description */}
           <ScrollReveal delay={1}>
-            <p className="font-sans text-parchment-muted text-base md:text-lg max-w-md mb-10">
+            <p className="font-sans text-parchment-muted text-lg md:text-xl max-w-md mb-10">
               Explore the timeless wisdom of Vedic Astrology through modern,
               structured learning.
             </p>

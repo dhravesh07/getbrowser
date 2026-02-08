@@ -172,7 +172,7 @@ export default function HeroSection() {
             initial="hidden"
             animate="visible"
             custom={2}
-            className="mt-7 md:mt-8 max-w-sm md:max-w-md text-sm md:text-[15px] font-sans text-parchment-muted leading-relaxed"
+            className="mt-7 md:mt-8 max-w-sm md:max-w-md text-base md:text-lg font-sans text-parchment-muted leading-relaxed"
           >
             Planetary wisdom, birth chart analysis, and Nakshatra
             science&mdash;guided by{" "}
@@ -226,10 +226,10 @@ export default function HeroSection() {
                 <span className="w-px h-3.5 bg-stone-faint mx-5 sm:mx-7 md:mx-10" />
               )}
               <div className="flex items-baseline gap-2">
-                <span className="text-saffron font-serif text-lg md:text-xl font-semibold">
+                <span className="text-saffron font-serif text-2xl md:text-3xl font-semibold">
                   {stat.number}
                 </span>
-                <span className="text-parchment-muted font-sans text-[11px] md:text-xs tracking-wide">
+                <span className="text-parchment-muted font-sans text-sm md:text-base tracking-wide">
                   {stat.label}
                 </span>
               </div>
@@ -250,7 +250,7 @@ export default function HeroSection() {
           transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
           className="flex flex-col items-center gap-3"
         >
-          <span className="text-[10px] uppercase tracking-[0.2em] text-parchment-faint font-sans [writing-mode:vertical-lr]">
+          <span className="text-sm uppercase tracking-[0.2em] text-parchment-faint font-sans [writing-mode:vertical-lr]">
             Scroll
           </span>
           <div className="w-px h-10 bg-gradient-to-b from-copper/25 to-transparent" />

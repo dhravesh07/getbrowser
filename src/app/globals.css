@@ -11,7 +11,9 @@
 
   body {
     background: #0A0E1A;
-    color: #EDE0D0;
+    color: #F5EDE0;
+    font-size: 18px;
+    line-height: 1.7;
     @apply min-h-screen;
   }
 
@@ -66,8 +68,8 @@
   }
 
   .accent-line {
-    @apply w-12 h-px;
-    background: #D4763C;
+    @apply w-14 h-[2px];
+    background: #E8853F;
   }
 
   .card {
@@ -81,41 +83,41 @@
   }
 
   .text-accent {
-    color: #D4763C;
+    color: #E8853F;
   }
 
   .gradient-text {
     @apply bg-clip-text text-transparent;
-    background-image: linear-gradient(135deg, #E8945A 0%, #D4763C 40%, #B87333 100%);
+    background-image: linear-gradient(135deg, #F0A56A 0%, #E8853F 40%, #CC8844 100%);
   }
 
   .btn-primary {
-    @apply inline-flex items-center justify-center px-7 py-3.5 text-sm font-medium font-sans tracking-wide transition-all duration-300;
-    background: #D4763C;
+    @apply inline-flex items-center justify-center px-8 py-4 text-base font-semibold font-sans tracking-wide transition-all duration-300;
+    background: #E8853F;
     color: #0A0E1A;
-    border-radius: 2px;
+    border-radius: 3px;
   }
   .btn-primary:hover {
-    background: #E8945A;
-    box-shadow: 0 8px 32px rgba(212,118,60,0.25);
+    background: #F0A56A;
+    box-shadow: 0 8px 32px rgba(232,133,63,0.3);
   }
 
   .btn-secondary {
-    @apply inline-flex items-center justify-center px-7 py-3.5 text-sm font-medium font-sans tracking-wide transition-all duration-300;
-    color: #D4763C;
-    border: 1px solid rgba(212,118,60,0.4);
-    border-radius: 2px;
+    @apply inline-flex items-center justify-center px-8 py-4 text-base font-semibold font-sans tracking-wide transition-all duration-300;
+    color: #E8853F;
+    border: 1.5px solid rgba(232,133,63,0.5);
+    border-radius: 3px;
     background: transparent;
   }
   .btn-secondary:hover {
-    border-color: #D4763C;
-    background: rgba(212,118,60,0.06);
+    border-color: #E8853F;
+    background: rgba(232,133,63,0.08);
   }
 
   .tag {
-    @apply inline-flex items-center text-xs font-sans tracking-wider uppercase;
-    color: #D4763C;
-    letter-spacing: 0.15em;
+    @apply inline-flex items-center text-sm font-sans font-medium tracking-wider uppercase;
+    color: #E8853F;
+    letter-spacing: 0.12em;
   }
 }
 

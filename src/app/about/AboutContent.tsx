@@ -67,10 +67,10 @@ export default function AboutContent() {
                   <div className="absolute inset-0 bg-gradient-to-t from-void/70 via-transparent to-transparent" />
                 </div>
                 <div className="absolute bottom-0 left-0 right-0 p-6 text-center">
-                  <span className="text-parchment-muted text-xs tracking-[0.2em] uppercase font-sans block">
+                  <span className="text-parchment-muted text-sm tracking-widest uppercase font-sans block">
                     Acharya
                   </span>
-                  <span className="text-parchment-dim text-sm tracking-[0.12em] uppercase font-sans mt-1 block">
+                  <span className="text-parchment-dim text-base tracking-wider uppercase font-sans mt-1 block">
                     Prateek Bhola
                   </span>
                 </div>
@@ -80,21 +80,21 @@ export default function AboutContent() {
             {/* Right — Bio Paragraphs */}
             <div className="lg:col-span-8 space-y-6">
               <ScrollReveal animation="slideRight">
-                <p className="text-parchment-muted text-base leading-relaxed font-sans">
+                <p className="text-parchment-muted text-lg leading-relaxed font-sans">
                   Acharya Prateek Bhola is a dedicated Vedic Astrology practitioner
                   and educator, bringing the profound wisdom of Jyotish Shastra to
                   modern learners.
                 </p>
               </ScrollReveal>
               <ScrollReveal animation="slideRight" delay={1}>
-                <p className="text-parchment-muted text-base leading-relaxed font-sans">
+                <p className="text-parchment-muted text-lg leading-relaxed font-sans">
                   Through comprehensive courses, interactive webinars, and insightful
                   articles, he makes complex astrological concepts accessible and
                   practical for seekers at every level.
                 </p>
               </ScrollReveal>
               <ScrollReveal animation="slideRight" delay={2}>
-                <p className="text-parchment-muted text-base leading-relaxed font-sans">
+                <p className="text-parchment-muted text-lg leading-relaxed font-sans">
                   His expertise spans Vedic Astrology, Planetary Science, Numerology,
                   and Occult Science, offering a holistic approach to understanding
                   cosmic influences on human life.
@@ -159,7 +159,7 @@ export default function AboutContent() {
             {studentBenefits.map((item) => (
               <motion.div key={item.title} variants={staggerItem}>
                 <h3 className="text-lg text-parchment mb-2">{item.title}</h3>
-                <p className="text-parchment-muted text-sm leading-relaxed font-sans">
+                <p className="text-parchment-muted text-base leading-relaxed font-sans">
                   {item.text}
                 </p>
               </motion.div>

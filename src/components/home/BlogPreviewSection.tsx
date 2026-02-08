@@ -78,26 +78,26 @@ export default function BlogPreviewSection() {
               <article className="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-10 items-start">
                 {/* Left column: title + excerpt */}
                 <div className="md:col-span-8">
-                  <span className="tag text-[10px] mb-4 block">
+                  <span className="tag mb-4 block">
                     {featured.category}
                   </span>
                   <h3 className="font-serif text-2xl md:text-3xl lg:text-[2.1rem] text-parchment leading-snug mb-4 group-hover:text-saffron transition-colors duration-300 max-w-2xl">
                     {featured.title}
                   </h3>
-                  <p className="font-sans text-parchment-muted text-[15px] leading-relaxed max-w-xl line-clamp-3">
+                  <p className="font-sans text-parchment-muted text-lg leading-relaxed max-w-xl line-clamp-3">
                     {featured.excerpt}
                   </p>
-                  <span className="font-sans text-xs text-parchment-faint mt-5 block">
+                  <span className="font-sans text-sm text-parchment-faint mt-5 block">
                     By {featured.author}
                   </span>
                 </div>
 
                 {/* Right column: date, read time, read link */}
                 <div className="md:col-span-4 flex flex-row md:flex-col md:items-end gap-3 md:gap-4 md:pt-2">
-                  <span className="font-sans text-xs text-parchment-faint tracking-wide">
+                  <span className="font-sans text-sm text-parchment-faint tracking-wide">
                     {featured.date}
                   </span>
-                  <span className="font-sans text-xs text-parchment-faint tracking-wide">
+                  <span className="font-sans text-sm text-parchment-faint tracking-wide">
                     {featured.readTime}
                   </span>
                   <span className="font-sans text-sm text-saffron group-hover:text-saffron-light transition-colors duration-300 flex items-center gap-1.5 mt-auto md:mt-4">
@@ -145,7 +145,7 @@ export default function BlogPreviewSection() {
                   className="block group py-8 md:py-10"
                 >
                   <article>
-                    <span className="tag text-[10px] mb-3 block">
+                    <span className="tag mb-3 block">
                       {post.category}
                     </span>
                     <h3 className="font-serif text-lg md:text-xl text-parchment leading-snug mb-3 group-hover:text-saffron transition-colors duration-300">
@@ -153,11 +153,11 @@ export default function BlogPreviewSection() {
                     </h3>
                     <div className="flex items-center justify-between mt-4">
                       <div className="flex items-center gap-3">
-                        <span className="font-sans text-xs text-parchment-faint">
+                        <span className="font-sans text-sm text-parchment-faint">
                           {post.date}
                         </span>
                         <span className="w-px h-3 bg-copper/15" />
-                        <span className="font-sans text-xs text-parchment-faint">
+                        <span className="font-sans text-sm text-parchment-faint">
                           {post.readTime}
                         </span>
                       </div>

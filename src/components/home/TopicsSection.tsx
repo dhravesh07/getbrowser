@@ -68,7 +68,7 @@ function TopicRow({ topic, isLast }: { topic: Topic; isLast: boolean }) {
 
           {/* Description — sits to the right on wider screens */}
           <div className="col-span-10 col-start-3 md:col-span-7 md:col-start-6">
-            <p className="font-sans text-sm md:text-base text-parchment-muted leading-relaxed mt-1 md:mt-0">
+            <p className="font-sans text-base md:text-lg text-parchment-muted leading-relaxed mt-1 md:mt-0">
               {topic.description}
             </p>
           </div>
@@ -92,7 +92,7 @@ function TopicCard({ topic }: { topic: Topic }) {
         {topic.number}
       </span>
       <h3 className="font-serif text-lg text-parchment mb-2">{topic.title}</h3>
-      <p className="font-sans text-sm text-parchment-muted leading-relaxed">
+      <p className="font-sans text-base text-parchment-muted leading-relaxed">
         {topic.description}
       </p>
     </div>
@@ -198,7 +198,7 @@ export default function TopicsSection() {
                 />
               ))}
             </div>
-            <span className="text-[10px] font-sans uppercase tracking-[0.15em] text-parchment-faint ml-2">
+            <span className="text-sm font-sans uppercase tracking-[0.15em] text-parchment-faint ml-2">
               Scroll
             </span>
           </div>

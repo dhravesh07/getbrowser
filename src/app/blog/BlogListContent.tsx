@@ -52,14 +52,14 @@ export default function BlogListContent() {
                 <article className="border-b border-stone-faint/40 pb-12">
                   <div className="flex items-center gap-4 mb-5">
                     <span className="tag">{featured.category}</span>
-                    <span className="text-parchment-faint text-xs font-sans">
+                    <span className="text-parchment-faint text-sm font-sans">
                       {formatDate(featured.date)}
                     </span>
                   </div>
                   <h2 className="text-3xl sm:text-4xl md:text-5xl text-parchment-light leading-[1.15] mb-5 group-hover:text-saffron transition-colors duration-300">
                     {featured.title}
                   </h2>
-                  <p className="text-parchment-muted text-base leading-relaxed font-sans max-w-3xl mb-6">
+                  <p className="text-parchment-muted text-lg leading-relaxed font-sans max-w-3xl mb-6">
                     {featured.excerpt}
                   </p>
                   <div className="flex items-center gap-3">
@@ -70,7 +70,7 @@ export default function BlogListContent() {
                       height={28}
                       className="rounded-full object-cover"
                     />
-                    <span className="text-parchment-dim text-xs font-sans">
+                    <span className="text-parchment-dim text-sm font-sans">
                       {featured.author}
                     </span>
                     <span className="w-px h-3 bg-stone-faint mx-1" />
@@ -100,21 +100,21 @@ export default function BlogListContent() {
                   <article className="py-8 border-b border-stone-faint/30 flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-2 sm:gap-8">
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center gap-4 mb-2">
-                        <span className="text-saffron text-xs font-sans tracking-wider uppercase">
+                        <span className="text-saffron text-sm font-sans tracking-wider uppercase">
                           {post.category}
                         </span>
-                        <span className="text-parchment-faint text-xs font-sans">
+                        <span className="text-parchment-faint text-sm font-sans">
                           {formatDate(post.date)}
                         </span>
                       </div>
-                      <h3 className="text-xl sm:text-2xl text-parchment leading-snug mb-2 group-hover:text-saffron transition-colors duration-300">
+                      <h3 className="text-2xl sm:text-3xl text-parchment leading-snug mb-2 group-hover:text-saffron transition-colors duration-300">
                         {post.title}
                       </h3>
-                      <p className="text-parchment-muted text-sm font-sans leading-relaxed line-clamp-1">
+                      <p className="text-parchment-muted text-base font-sans leading-relaxed line-clamp-1">
                         {post.excerpt}
                       </p>
                     </div>
-                    <span className="text-saffron/60 text-xs font-sans tracking-wide shrink-0 group-hover:text-saffron transition-colors duration-300">
+                    <span className="text-saffron/70 text-sm font-sans tracking-wide shrink-0 group-hover:text-saffron transition-colors duration-300">
                       {post.readTime}
                     </span>
                   </article>

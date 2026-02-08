@@ -39,7 +39,7 @@ export default function WebinarsContent() {
       <section className="pb-20">
         <div className="container-custom max-w-3xl">
           <ScrollReveal animation="fadeUp">
-            <p className="text-parchment-muted text-base leading-relaxed font-sans">
+            <p className="text-parchment-muted text-lg leading-relaxed font-sans">
               Live webinars and interactive sessions are coming soon. Stay tuned
               for announcements on upcoming sessions covering Vedic Astrology,
               Numerology, and more.
@@ -52,7 +52,7 @@ export default function WebinarsContent() {
       <section className="pb-24 md:pb-32 border-b border-stone-faint/40">
         <div className="container-custom max-w-3xl">
           <ScrollReveal animation="fadeUp">
-            <p className="text-parchment-dim text-sm font-sans mb-8">
+            <p className="text-parchment-dim text-base font-sans mb-8">
               Join our community to get notified about upcoming webinars.
             </p>
             <MagneticButton>
@@ -94,7 +94,7 @@ export default function WebinarsContent() {
                   <h3 className="text-xl sm:text-2xl text-parchment leading-tight mb-1">
                     {topic.title}
                   </h3>
-                  <span className="text-parchment-faint text-xs font-sans tracking-wider uppercase">
+                  <span className="text-parchment-faint text-sm font-sans tracking-wider uppercase">
                     Coming Soon
                   </span>
                 </div>

@@ -89,7 +89,7 @@ export default function ProductsContent() {
                       </h3>
                       <span className="tag shrink-0">{product.type}</span>
                     </div>
-                    <p className="text-parchment-muted text-sm font-sans leading-relaxed max-w-2xl">
+                    <p className="text-parchment-muted text-base font-sans leading-relaxed max-w-2xl">
                       {product.description}
                     </p>
                   </div>
@@ -105,7 +105,7 @@ export default function ProductsContent() {
         <div className="container-custom">
           <ScrollReveal animation="fadeUp">
             <div className="border-t border-stone-faint/40 pt-10">
-              <p className="text-parchment-faint text-sm font-sans italic">
+              <p className="text-parchment-faint text-base font-sans italic">
                 More products coming soon.
               </p>
             </div>

@@ -79,8 +79,8 @@ export default function BlogArticleContent({ post }: Props) {
                 className="rounded-full object-cover"
               />
               <div className="font-sans">
-                <span className="text-parchment-dim text-sm block">{post.author}</span>
-                <span className="text-parchment-faint text-xs">
+                <span className="text-parchment-dim text-base block">{post.author}</span>
+                <span className="text-parchment-faint text-sm">
                   {formatDate(post.date)} &middot; {post.readTime}
                 </span>
               </div>
@@ -96,7 +96,7 @@ export default function BlogArticleContent({ post }: Props) {
       <section className="pb-16">
         <div className="container-custom max-w-3xl mx-auto">
           <ScrollReveal animation="fadeIn">
-            <div className="text-parchment-dim text-base leading-relaxed font-sans whitespace-pre-line">
+            <div className="text-parchment-dim text-lg leading-relaxed font-sans whitespace-pre-line">
               {post.content}
             </div>
           </ScrollReveal>
@@ -108,10 +108,10 @@ export default function BlogArticleContent({ post }: Props) {
         <div className="container-custom max-w-3xl mx-auto">
           <ScrollReveal animation="fadeUp">
             <div className="border-t border-stone-faint/40 pt-8">
-              <span className="text-parchment-faint text-xs font-sans uppercase tracking-wider mb-4 block">
+              <span className="text-parchment-faint text-sm font-sans uppercase tracking-wider mb-4 block">
                 Tagged
               </span>
-              <p className="text-saffron text-sm font-sans leading-relaxed">
+              <p className="text-saffron text-base font-sans leading-relaxed">
                 {post.tags.join(", ")}
               </p>
             </div>

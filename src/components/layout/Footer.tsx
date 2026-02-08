@@ -56,7 +56,7 @@ export default function Footer() {
                   key={name}
                   href="#"
                   aria-label={name}
-                  className="text-xs text-parchment-faint hover:text-saffron transition-colors duration-300 font-sans"
+                  className="text-sm text-parchment-faint hover:text-saffron transition-colors duration-300 font-sans"
                 >
                   {name}
                 </a>
@@ -73,7 +73,7 @@ export default function Footer() {
             ] as const
           ).map(([title, links, delay]) => (
             <ScrollReveal key={title} animation="fadeUp" delay={delay}>
-              <h4 className="text-xs font-sans font-medium text-parchment-muted mb-4 tracking-widest uppercase">
+              <h4 className="text-sm font-sans font-semibold text-parchment-muted mb-4 tracking-widest uppercase">
                 {title}
               </h4>
               <ul className="space-y-3">
@@ -95,10 +95,10 @@ export default function Footer() {
         {/* Bottom bar */}
         <div className="h-px bg-copper/8 mt-14" />
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-xs text-parchment-faint/50 font-sans">
+          <p className="text-sm text-parchment-faint font-sans">
             &copy; {new Date().getFullYear()} Ankyotissh. All rights reserved.
           </p>
-          <p className="text-xs text-parchment-faint/30 font-sans tracking-wider">
+          <p className="text-sm text-parchment-faint/70 font-sans tracking-wider">
             Jyotish Shastra &middot; Grah Vigyaan &middot; India
           </p>
         </div>
