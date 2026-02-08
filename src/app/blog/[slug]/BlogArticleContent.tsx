@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import ScrollReveal from "@/components/ui/ScrollReveal";
 
 interface BlogPost {
@@ -8,6 +9,7 @@ interface BlogPost {
   content: string;
   date: string;
   author: string;
+  authorImage: string;
   category: string;
   readTime: string;
   tags: string[];
@@ -68,13 +70,21 @@ export default function BlogArticleContent({ post }: Props) {
             </h1>
           </ScrollReveal>
           <ScrollReveal animation="fadeUp" delay={2}>
-            <p className="text-parchment-muted text-sm font-sans mb-6">
-              {formatDate(post.date)}
-              <span className="mx-3 text-stone-faint">/</span>
-              {post.readTime}
-              <span className="mx-3 text-stone-faint">/</span>
-              {post.author}
-            </p>
+            <div className="flex items-center gap-3 mb-6">
+              <Image
+                src={post.authorImage}
+                alt={post.author}
+                width={36}
+                height={36}
+                className="rounded-full object-cover"
+              />
+              <div className="font-sans">
+                <span className="text-parchment-dim text-sm block">{post.author}</span>
+                <span className="text-parchment-faint text-xs">
+                  {formatDate(post.date)} &middot; {post.readTime}
+                </span>
+              </div>
+            </div>
           </ScrollReveal>
           <ScrollReveal animation="fadeUp" delay={3}>
             <div className="accent-line" />

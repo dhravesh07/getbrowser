@@ -3,6 +3,7 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import ScrollReveal from "@/components/ui/ScrollReveal";
 import { staggerContainer, staggerItem } from "@/lib/animations";
 import MagneticButton from "@/components/ui/MagneticButton";
@@ -54,20 +55,25 @@ export default function AboutContent() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-start">
             {/* Left — Typographic Initial */}
             <ScrollReveal animation="slideLeft" className="lg:col-span-4">
-              <div className="bg-void-surface border border-stone-faint/60 p-10 md:p-12 flex flex-col items-center">
-                <span
-                  className="font-serif text-saffron leading-none select-none"
-                  style={{ fontSize: "clamp(120px, 18vw, 180px)" }}
-                >
-                  A
-                </span>
-                <div className="w-8 h-px bg-stone-faint mt-6 mb-5" />
-                <span className="text-parchment-muted text-xs tracking-[0.2em] uppercase font-sans text-center">
-                  Acharya
-                </span>
-                <span className="text-parchment-dim text-sm tracking-[0.12em] uppercase font-sans mt-1 text-center">
-                  Prateek Bhola
-                </span>
+              <div className="relative overflow-hidden rounded-sm border border-stone-faint/30">
+                <div className="relative aspect-[3/4]">
+                  <Image
+                    src="/images/acharya-prateek-bhola.jpg"
+                    alt="Acharya Prateek Bhola"
+                    fill
+                    className="object-cover object-top"
+                    sizes="(max-width: 1024px) 100vw, 33vw"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-void/70 via-transparent to-transparent" />
+                </div>
+                <div className="absolute bottom-0 left-0 right-0 p-6 text-center">
+                  <span className="text-parchment-muted text-xs tracking-[0.2em] uppercase font-sans block">
+                    Acharya
+                  </span>
+                  <span className="text-parchment-dim text-sm tracking-[0.12em] uppercase font-sans mt-1 block">
+                    Prateek Bhola
+                  </span>
+                </div>
               </div>
             </ScrollReveal>
 

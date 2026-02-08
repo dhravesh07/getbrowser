@@ -3,6 +3,7 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import ScrollReveal from "@/components/ui/ScrollReveal";
 import { staggerContainer, staggerItem } from "@/lib/animations";
 import { blogPosts } from "@/lib/blog-data";
@@ -61,9 +62,22 @@ export default function BlogListContent() {
                   <p className="text-parchment-muted text-base leading-relaxed font-sans max-w-3xl mb-6">
                     {featured.excerpt}
                   </p>
-                  <span className="text-saffron text-sm font-sans tracking-wide group-hover:tracking-wider transition-all duration-300">
-                    Read article
-                  </span>
+                  <div className="flex items-center gap-3">
+                    <Image
+                      src={featured.authorImage}
+                      alt={featured.author}
+                      width={28}
+                      height={28}
+                      className="rounded-full object-cover"
+                    />
+                    <span className="text-parchment-dim text-xs font-sans">
+                      {featured.author}
+                    </span>
+                    <span className="w-px h-3 bg-stone-faint mx-1" />
+                    <span className="text-saffron text-sm font-sans tracking-wide group-hover:tracking-wider transition-all duration-300">
+                      Read article
+                    </span>
+                  </div>
                 </article>
               </Link>
             </ScrollReveal>

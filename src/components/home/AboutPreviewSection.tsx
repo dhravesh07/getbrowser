@@ -3,6 +3,7 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import ScrollReveal from "@/components/ui/ScrollReveal";
 import MagneticButton from "@/components/ui/MagneticButton";
 
@@ -38,48 +39,34 @@ export default function AboutPreviewSection() {
           {/* -------------------------------------------------- */}
           <ScrollReveal animation="slideLeft" className="lg:col-span-5">
             <motion.div style={{ y: panelY }}>
-              {/* On mobile: a short horizontal band. On desktop: a tall narrow column */}
-              <div className="relative bg-void-surface rounded-sm overflow-hidden h-48 lg:h-[540px]">
-                {/* Faint texture line running vertically, editorial detail */}
-                <div className="absolute right-0 top-0 w-px h-full bg-copper/10 hidden lg:block" />
-                <div className="absolute left-6 top-6 bottom-6 w-px bg-copper/[0.06] hidden lg:block" />
-
-                {/* The oversized letter "A" */}
-                <motion.div
-                  style={{ y: letterFloat }}
-                  className="absolute -top-4 lg:-top-6 -left-3 lg:left-4 select-none pointer-events-none"
-                >
-                  <span
-                    className="font-serif font-bold text-saffron/[0.14] leading-none block"
-                    style={{ fontSize: "clamp(140px, 18vw, 260px)" }}
-                  >
-                    A
-                  </span>
-                </motion.div>
-
-                {/* Second decorative letter, offset, even fainter */}
-                <div className="absolute bottom-8 right-6 select-none pointer-events-none hidden lg:block">
-                  <span className="font-serif text-copper/[0.06] text-8xl leading-none">
-                    P
-                  </span>
+              <div className="relative rounded-sm overflow-hidden">
+                {/* Profile photo */}
+                <div className="relative h-64 lg:h-[540px] bg-void-surface">
+                  <Image
+                    src="/images/acharya-prateek-bhola.jpg"
+                    alt="Acharya Prateek Bhola"
+                    fill
+                    className="object-cover object-top"
+                    sizes="(max-width: 1024px) 100vw, 40vw"
+                  />
+                  {/* Subtle gradient overlay at bottom for text legibility */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-void/80 via-void/20 to-transparent" />
                 </div>
 
-                {/* Name text — vertical on desktop, horizontal on mobile */}
+                {/* Name overlay at bottom */}
                 <div className="absolute bottom-6 left-8 lg:bottom-10 lg:left-10 z-10">
-                  <div className="lg:flex lg:flex-col gap-1">
-                    <span className="text-parchment-muted font-sans text-[11px] tracking-[0.2em] uppercase block">
-                      Acharya
-                    </span>
-                    <span className="text-parchment font-serif text-xl lg:text-2xl tracking-wide block mt-0.5">
-                      Prateek Bhola
-                    </span>
-                  </div>
+                  <span className="text-parchment-muted font-sans text-[11px] tracking-[0.2em] uppercase block">
+                    Acharya
+                  </span>
+                  <span className="text-parchment font-serif text-xl lg:text-2xl tracking-wide block mt-0.5">
+                    Prateek Bhola
+                  </span>
                   <div className="accent-line mt-4" />
                 </div>
 
                 {/* Small descriptor in top-right corner */}
                 <div className="absolute top-5 right-6 z-10 hidden lg:block">
-                  <span className="text-parchment-faint font-sans text-[10px] tracking-[0.15em] uppercase">
+                  <span className="text-parchment-faint font-sans text-[10px] tracking-[0.15em] uppercase drop-shadow-sm">
                     Vedic Astrology Expert
                   </span>
                 </div>

@@ -3,6 +3,7 @@
 import { Fragment, useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import Link from "next/link";
+import Image from "next/image";
 import { heroTextReveal } from "@/lib/animations";
 import MagneticButton from "@/components/ui/MagneticButton";
 
@@ -126,16 +127,23 @@ export default function HeroSection() {
       >
         {/* Left-aligned text block */}
         <div className="max-w-xl lg:max-w-2xl">
-          {/* Tag line */}
-          <motion.span
+          {/* Tag line with logo mark */}
+          <motion.div
             variants={heroTextReveal}
             initial="hidden"
             animate="visible"
             custom={0}
-            className="tag mb-8 block"
+            className="flex items-center gap-3 mb-8"
           >
-            Jyotish Shastra
-          </motion.span>
+            <Image
+              src="/images/logo.png"
+              alt=""
+              width={24}
+              height={24}
+              className="opacity-60"
+            />
+            <span className="tag">Jyotish Shastra</span>
+          </motion.div>
 
           {/* Display heading */}
           <motion.h1

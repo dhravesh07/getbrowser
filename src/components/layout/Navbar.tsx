@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
+import Image from "next/image";
 
 const navLinks = [
   { name: "Home", href: "/" },
@@ -43,10 +44,14 @@ export default function Navbar() {
       >
         <nav className="container-custom flex items-center justify-between h-16 md:h-20">
           {/* Logo — simple typographic mark */}
-          <Link href="/" className="relative z-10 flex items-center gap-3 group">
-            <div className="w-8 h-8 border border-saffron/40 flex items-center justify-center group-hover:border-saffron/70 transition-colors duration-500" style={{ transform: "rotate(45deg)" }}>
-              <span className="text-saffron text-xs font-serif font-bold" style={{ transform: "rotate(-45deg)" }}>A</span>
-            </div>
+          <Link href="/" className="relative z-10 flex items-center gap-2.5 group">
+            <Image
+              src="/images/logo.png"
+              alt="Ankyotissh"
+              width={36}
+              height={36}
+              className="rounded-sm group-hover:opacity-90 transition-opacity duration-300"
+            />
             <div className="flex flex-col">
               <span className="text-parchment text-sm font-serif font-semibold tracking-wide">Ankyotissh</span>
               <span className="text-[9px] text-parchment-muted tracking-[0.2em] uppercase font-sans">Vedic Astrology</span>

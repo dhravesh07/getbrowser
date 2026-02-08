@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import ScrollReveal from "@/components/ui/ScrollReveal";
 
 const footerLinks = {
@@ -32,18 +33,14 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 lg:gap-8">
           {/* Brand column */}
           <ScrollReveal animation="fadeUp" className="lg:col-span-2">
-            <div className="flex items-center gap-3 mb-5">
-              <div
-                className="w-7 h-7 border border-saffron/40 flex items-center justify-center"
-                style={{ transform: "rotate(45deg)" }}
-              >
-                <span
-                  className="text-saffron text-[10px] font-serif font-bold"
-                  style={{ transform: "rotate(-45deg)" }}
-                >
-                  A
-                </span>
-              </div>
+            <div className="flex items-center gap-2.5 mb-5">
+              <Image
+                src="/images/logo.png"
+                alt="Ankyotissh"
+                width={32}
+                height={32}
+                className="rounded-sm"
+              />
               <span className="text-parchment text-sm font-serif font-semibold tracking-wide">
                 Ankyotissh
               </span>

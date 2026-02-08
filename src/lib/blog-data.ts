@@ -3,6 +3,7 @@ export interface BlogPost {
   title: string;
   excerpt: string;
   author: string;
+  authorImage: string;
   date: string;
   category: string;
   tags: string[];
@@ -17,6 +18,7 @@ export const blogPosts: BlogPost[] = [
     excerpt:
       "Jupiter ko Vedic Astrology me sabse shubh aur powerful grahon me se ek maana jaata hai. Janiye kyu Jupiter ko Guru ka darja diya gaya hai aur iska astrological significance kya hai.",
     author: "Acharya Prateek Bhola",
+    authorImage: "/images/acharya-prateek-bhola.jpg",
     date: "2026-02-06",
     category: "Vedic Astrology",
     tags: ["Jupiter", "Guru", "Planetary Astrology", "Jyotish Shastra", "Grah Vigyaan"],
@@ -42,6 +44,7 @@ Scientific perspective se dekhe toh Jupiter sirf ek gas giant hai, lekin astrolo
     excerpt:
       "Chandramaa scientifically ek satellite hai, lekin Vedic Astrology me ise planet ka darja kyu diya gaya hai? Janiye Moon ka emotions, mind aur spirituality par prabhav.",
     author: "Acharya Prateek Bhola",
+    authorImage: "/images/acharya-prateek-bhola.jpg",
     date: "2026-02-05",
     category: "Vedic Astrology",
     tags: ["Moon", "Chandramaa", "Planetary Astrology", "Jyotish", "Emotions"],
@@ -67,6 +70,7 @@ Vedic Astrology me Chandramaa ki sthiti se vyakti ka emotional quotient, mental 
     excerpt:
       "Surya scientifically ek star hai, lekin Jyotish Shastra me ise sabse powerful aur important grah maana jaata hai. Janiye astronomical vs astrological perspective.",
     author: "Acharya Prateek Bhola",
+    authorImage: "/images/acharya-prateek-bhola.jpg",
     date: "2026-02-03",
     category: "Vedic Astrology",
     tags: ["Sun", "Surya", "Jyotish Shastra", "Planetary Astrology", "Grah Vigyaan"],
@@ -92,6 +96,7 @@ Surya har rashi me lagbhag ek mahine rehta hai, isliye Sun Sign ka concept bhi y
     excerpt:
       "Rahu, the North Node of the Moon, is a shadow planet with mysterious and powerful influence on our ambitions and future outlook. Explore how Rahu shapes destiny through each house.",
     author: "Acharya Prateek Bhola",
+    authorImage: "/images/acharya-prateek-bhola.jpg",
     date: "2025-12-19",
     category: "Planetary Astrology",
     tags: ["Rahu", "Rahu Ketu", "Shadow Planet", "Planetary Influences", "Houses"],
@@ -135,6 +140,7 @@ Understanding Rahu's placement in your chart can reveal the areas where you are 
     excerpt:
       "Your rising sign (ascendant) shapes how others perceive you and influences your outward personality. Discover the unique traits of each rising sign from a human perspective.",
     author: "Acharya Prateek Bhola",
+    authorImage: "/images/acharya-prateek-bhola.jpg",
     date: "2025-12-17",
     category: "Zodiac Signs",
     tags: ["Rising Sign", "Ascendant", "Zodiac Signs", "Horoscope", "Kundli"],
