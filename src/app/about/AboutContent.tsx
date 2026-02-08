@@ -1,125 +1,172 @@
 "use client";
 
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import Link from "next/link";
 import ScrollReveal from "@/components/ui/ScrollReveal";
-import TextReveal from "@/components/ui/TextReveal";
+import { staggerContainer, staggerItem } from "@/lib/animations";
 import MagneticButton from "@/components/ui/MagneticButton";
 
 const expertise = [
-  { area: "Vedic Astrology", description: "Deep expertise in traditional Jyotish Shastra, including birth chart analysis, dasha systems, and predictive astrology." },
-  { area: "Planetary Science (Grah Vigyaan)", description: "Comprehensive understanding of the nine celestial bodies (Navagraha) and their influence on human life and destiny." },
-  { area: "Numerology", description: "Mastery in the science of numbers and their mystical relationship with life events, personality, and decision-making." },
-  { area: "Occult Science", description: "Knowledge of esoteric practices and hidden wisdom traditions that complement and deepen astrological understanding." },
-  { area: "Horoscope & Kundli Analysis", description: "Expert birth chart interpretation covering career, relationships, health, and spiritual growth." },
+  { num: "01", title: "Vedic Astrology" },
+  { num: "02", title: "Planetary Science" },
+  { num: "03", title: "Numerology" },
+  { num: "04", title: "Occult Science" },
+  { num: "05", title: "Horoscope & Kundli" },
 ];
 
-const values = [
-  { title: "Authentic Wisdom", description: "Rooted in traditional Vedic texts and time-tested methodologies passed down through generations." },
-  { title: "Modern Approach", description: "Making ancient knowledge accessible through digital courses, webinars, and interactive learning tools." },
-  { title: "Student-Centered", description: "Structured learning paths with videos, PDFs, and hands-on practice for effective understanding." },
-  { title: "Community", description: "Building a community of learners who share a passion for cosmic knowledge and self-discovery." },
+const studentBenefits = [
+  { title: "Structured Courses", text: "Step-by-step learning paths from foundational to advanced topics." },
+  { title: "Live Webinars", text: "Interactive sessions with real-time Q&A and chart analysis." },
+  { title: "Digital Resources", text: "PDF guides, reference charts, and practice workbooks." },
+  { title: "Community Access", text: "Connect with fellow learners and share your journey." },
 ];
 
 export default function AboutContent() {
-  const heroRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({ target: heroRef, offset: ["start start", "end start"] });
-  const heroOpacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
-  const heroScale = useTransform(scrollYProgress, [0, 0.5], [1, 0.95]);
+  const expertiseRef = useRef<HTMLDivElement>(null);
+  const expertiseInView = useInView(expertiseRef, { once: true, amount: 0.2 });
+
+  const benefitsRef = useRef<HTMLDivElement>(null);
+  const benefitsInView = useInView(benefitsRef, { once: true, amount: 0.2 });
 
   return (
     <>
-      {/* Hero */}
-      <section ref={heroRef} className="relative min-h-[70vh] flex items-center justify-center overflow-hidden">
-        <div className="absolute inset-0">
-          <div className="absolute top-1/3 left-1/3 w-[500px] h-[500px] rounded-full bg-astro-gold/[0.06] blur-[120px]" />
-          <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] rounded-full bg-cosmic-600/[0.08] blur-[100px]" />
-          <div className="absolute inset-0 star-field opacity-25" />
+      {/* Page Header */}
+      <section className="pt-36 pb-16">
+        <div className="container-custom">
+          <ScrollReveal animation="fadeUp">
+            <span className="tag mb-5 block">About</span>
+          </ScrollReveal>
+          <ScrollReveal animation="fadeUp" delay={1}>
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-parchment-light leading-[1.1] mb-6">
+              Acharya Prateek Bhola
+            </h1>
+          </ScrollReveal>
+          <ScrollReveal animation="fadeUp" delay={2}>
+            <div className="accent-line" />
+          </ScrollReveal>
         </div>
-
-        <motion.div style={{ opacity: heroOpacity, scale: heroScale }} className="relative z-10 container-custom text-center pt-32">
-          <TextReveal><span className="text-xs font-semibold text-astro-gold uppercase tracking-[0.2em] mb-6 block">About Us</span></TextReveal>
-          <TextReveal delay={0.2}><h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6">Meet <span className="gold-text">Acharya Prateek Bhola</span></h1></TextReveal>
-          <TextReveal delay={0.4}><p className="max-w-xl mx-auto text-base md:text-lg text-cosmic-200/50 leading-relaxed">Dedicated Vedic Astrology practitioner and educator, bringing ancient cosmic wisdom to the modern world through digital learning.</p></TextReveal>
-        </motion.div>
       </section>
 
-      {/* About detail */}
-      <section className="section-padding relative">
+      {/* Two-Column Bio */}
+      <section className="pb-24 md:pb-32">
         <div className="container-custom">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
-            {/* Profile card */}
-            <ScrollReveal animation="slideLeft">
-              <div className="sticky top-28">
-                <div className="astro-card rounded-3xl p-8 md:p-10">
-                  <div className="w-24 h-24 rounded-2xl bg-gradient-to-br from-astro-gold via-astro-amber to-astro-gold flex items-center justify-center mb-8 animate-glow-gold">
-                    <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
-                      <circle cx="24" cy="24" r="10" stroke="#1E0038" strokeWidth="2" />
-                      <circle cx="24" cy="24" r="4" fill="#1E0038" fillOpacity="0.6" />
-                      {[0, 60, 120, 180, 240, 300].map((a) => (<line key={a} x1="24" y1="6" x2="24" y2="10" stroke="#1E0038" strokeWidth="2" strokeLinecap="round" transform={`rotate(${a} 24 24)`} />))}
-                    </svg>
-                  </div>
-                  <h2 className="text-2xl font-bold text-white mb-2">Acharya Prateek Bhola</h2>
-                  <p className="text-sm text-astro-gold/70 mb-6">Vedic Astrology Expert & Educator</p>
-                  <p className="text-sm text-cosmic-200/40 leading-relaxed mb-8">Acharya Prateek Bhola is the founder and lead instructor at Ankyotissh, an educational platform dedicated to Vedic Astrology, Numerology, and Occult Science. Through structured courses, live webinars, and insightful blog articles, he makes profound astrological concepts accessible to learners of all levels.</p>
-                  <div className="flex flex-wrap gap-2">
-                    {["Facebook", "Instagram", "YouTube", "LinkedIn"].map((s) => (
-                      <span key={s} className="text-xs px-4 py-2 rounded-full bg-cosmic-800/50 border border-astro-gold/10 text-cosmic-200/40">{s}</span>
-                    ))}
-                  </div>
-                </div>
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-start">
+            {/* Left — Typographic Initial */}
+            <ScrollReveal animation="slideLeft" className="lg:col-span-4">
+              <div className="bg-void-surface border border-stone-faint/60 p-10 md:p-12 flex flex-col items-center">
+                <span
+                  className="font-serif text-saffron leading-none select-none"
+                  style={{ fontSize: "clamp(120px, 18vw, 180px)" }}
+                >
+                  A
+                </span>
+                <div className="w-8 h-px bg-stone-faint mt-6 mb-5" />
+                <span className="text-parchment-muted text-xs tracking-[0.2em] uppercase font-sans text-center">
+                  Acharya
+                </span>
+                <span className="text-parchment-dim text-sm tracking-[0.12em] uppercase font-sans mt-1 text-center">
+                  Prateek Bhola
+                </span>
               </div>
             </ScrollReveal>
 
-            {/* Content */}
-            <div className="space-y-16">
+            {/* Right — Bio Paragraphs */}
+            <div className="lg:col-span-8 space-y-6">
               <ScrollReveal animation="slideRight">
-                <div>
-                  <span className="text-xs font-semibold text-astro-gold uppercase tracking-[0.2em] mb-4 block">Our Mission</span>
-                  <h3 className="text-2xl md:text-3xl font-bold text-white mb-5">Bridging Ancient Wisdom with Modern Learning</h3>
-                  <p className="text-cosmic-200/40 leading-relaxed mb-4">Ankyotissh was founded with a clear vision: to make the profound knowledge of Vedic Astrology and related sciences accessible to everyone, regardless of their background or location.</p>
-                  <p className="text-cosmic-200/40 leading-relaxed">Through digital courses, live interactive webinars, comprehensive blog articles, and AI-powered learning tools, we create a holistic learning environment that respects traditional knowledge while embracing modern technology.</p>
-                </div>
+                <p className="text-parchment-muted text-base leading-relaxed font-sans">
+                  Acharya Prateek Bhola is a dedicated Vedic Astrology practitioner
+                  and educator, bringing the profound wisdom of Jyotish Shastra to
+                  modern learners.
+                </p>
               </ScrollReveal>
-
-              <div>
-                <ScrollReveal animation="slideRight"><span className="text-xs font-semibold text-astro-gold uppercase tracking-[0.2em] mb-4 block">Areas of Expertise</span><h3 className="text-2xl md:text-3xl font-bold text-white mb-8">Deep Knowledge Across Disciplines</h3></ScrollReveal>
-                <div className="space-y-4">
-                  {expertise.map((item, i) => (
-                    <ScrollReveal key={item.area} animation="fadeUp" delay={i}>
-                      <div className="astro-card-hover p-6 rounded-xl">
-                        <h4 className="text-base font-semibold text-white mb-2">{item.area}</h4>
-                        <p className="text-sm text-cosmic-200/40 leading-relaxed">{item.description}</p>
-                      </div>
-                    </ScrollReveal>
-                  ))}
-                </div>
-              </div>
-
-              <div>
-                <ScrollReveal animation="slideRight"><span className="text-xs font-semibold text-astro-gold uppercase tracking-[0.2em] mb-4 block">Our Values</span><h3 className="text-2xl md:text-3xl font-bold text-white mb-8">What Drives Us</h3></ScrollReveal>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  {values.map((item, i) => (
-                    <ScrollReveal key={item.title} animation="scaleUp" delay={i}>
-                      <div className="astro-card p-6 rounded-xl h-full">
-                        <h4 className="text-base font-semibold text-white mb-2">{item.title}</h4>
-                        <p className="text-sm text-cosmic-200/40 leading-relaxed">{item.description}</p>
-                      </div>
-                    </ScrollReveal>
-                  ))}
-                </div>
-              </div>
-
-              <ScrollReveal animation="fadeUp">
-                <div className="astro-card rounded-2xl p-8 text-center gold-border">
-                  <h3 className="text-xl font-bold text-white mb-3">Ready to Begin Your Journey?</h3>
-                  <p className="text-sm text-cosmic-200/40 mb-6">Explore our courses and start learning Vedic Astrology today.</p>
-                  <MagneticButton><Link href="/courses" className="btn-primary"><span>Explore Courses</span></Link></MagneticButton>
-                </div>
+              <ScrollReveal animation="slideRight" delay={1}>
+                <p className="text-parchment-muted text-base leading-relaxed font-sans">
+                  Through comprehensive courses, interactive webinars, and insightful
+                  articles, he makes complex astrological concepts accessible and
+                  practical for seekers at every level.
+                </p>
+              </ScrollReveal>
+              <ScrollReveal animation="slideRight" delay={2}>
+                <p className="text-parchment-muted text-base leading-relaxed font-sans">
+                  His expertise spans Vedic Astrology, Planetary Science, Numerology,
+                  and Occult Science, offering a holistic approach to understanding
+                  cosmic influences on human life.
+                </p>
               </ScrollReveal>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* Areas of Expertise */}
+      <section className="section-padding border-t border-stone-faint/40">
+        <div className="container-custom">
+          <ScrollReveal animation="fadeUp">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl text-parchment-light mb-16">
+              Areas of Expertise
+            </h2>
+          </ScrollReveal>
+
+          <motion.div
+            ref={expertiseRef}
+            variants={staggerContainer}
+            initial="hidden"
+            animate={expertiseInView ? "visible" : "hidden"}
+          >
+            {expertise.map((item, i) => (
+              <motion.div
+                key={item.num}
+                variants={staggerItem}
+                className={`flex items-baseline gap-6 sm:gap-10 py-6 ${
+                  i < expertise.length - 1 ? "border-b border-stone-faint/40" : ""
+                }`}
+              >
+                <span className="text-saffron font-sans text-sm tabular-nums w-6 shrink-0">
+                  {item.num}
+                </span>
+                <h3 className="text-xl sm:text-2xl text-parchment leading-tight">
+                  {item.title}
+                </h3>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+      </section>
+
+      {/* What Students Get */}
+      <section className="section-padding border-t border-stone-faint/40">
+        <div className="container-custom">
+          <ScrollReveal animation="fadeUp">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl text-parchment-light mb-16">
+              What Students Get
+            </h2>
+          </ScrollReveal>
+
+          <motion.div
+            ref={benefitsRef}
+            variants={staggerContainer}
+            initial="hidden"
+            animate={benefitsInView ? "visible" : "hidden"}
+            className="grid grid-cols-1 sm:grid-cols-2 gap-x-16 gap-y-12"
+          >
+            {studentBenefits.map((item) => (
+              <motion.div key={item.title} variants={staggerItem}>
+                <h3 className="text-lg text-parchment mb-2">{item.title}</h3>
+                <p className="text-parchment-muted text-sm leading-relaxed font-sans">
+                  {item.text}
+                </p>
+              </motion.div>
+            ))}
+          </motion.div>
+
+          <ScrollReveal animation="fadeUp" className="mt-20">
+            <MagneticButton>
+              <Link href="/courses" className="btn-primary">
+                Explore Courses
+              </Link>
+            </MagneticButton>
+          </ScrollReveal>
         </div>
       </section>
     </>

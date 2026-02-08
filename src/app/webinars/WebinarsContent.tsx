@@ -1,59 +1,106 @@
 "use client";
 
-import { useState } from "react";
-import { motion } from "framer-motion";
-import Link from "next/link";
+import { motion, useInView } from "framer-motion";
+import { useRef } from "react";
 import ScrollReveal from "@/components/ui/ScrollReveal";
-import TextReveal from "@/components/ui/TextReveal";
 import MagneticButton from "@/components/ui/MagneticButton";
+import { staggerContainer, staggerItem } from "@/lib/animations";
 
-const tabs = ["Upcoming", "Past", "All"];
+const upcomingTopics = [
+  { num: "01", title: "Introduction to Birth Charts" },
+  { num: "02", title: "Understanding Planetary Transits" },
+  { num: "03", title: "Numerology Fundamentals" },
+];
 
 export default function WebinarsContent() {
-  const [activeTab, setActiveTab] = useState("Upcoming");
+  const topicsRef = useRef<HTMLDivElement>(null);
+  const topicsInView = useInView(topicsRef, { once: true, amount: 0.2 });
 
   return (
     <>
-      <section className="relative pt-32 pb-16 overflow-hidden">
-        <div className="absolute inset-0">
-          <div className="absolute top-1/3 right-1/4 w-[400px] h-[400px] rounded-full bg-astro-gold/[0.05] blur-[120px]" />
-          <div className="absolute bottom-1/4 left-1/3 w-[400px] h-[400px] rounded-full bg-cosmic-600/[0.06] blur-[100px]" />
-          <div className="absolute inset-0 star-field opacity-25" />
-        </div>
-        <div className="container-custom relative z-10 text-center">
-          <TextReveal><span className="text-xs font-semibold text-astro-gold uppercase tracking-[0.2em] mb-4 block">Live Sessions</span></TextReveal>
-          <TextReveal delay={0.2}><h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-5"><span className="gold-text">Webinars</span></h1></TextReveal>
-          <TextReveal delay={0.4}><p className="max-w-lg mx-auto text-cosmic-200/50 leading-relaxed">Join live interactive sessions on Vedic Astrology, Planetary Science, and Numerology. Get real-time insights from Acharya Prateek Bhola.</p></TextReveal>
-        </div>
-      </section>
-
-      <section className="pb-8">
+      {/* Page Header */}
+      <section className="pt-36 pb-16">
         <div className="container-custom">
-          <ScrollReveal>
-            <div className="flex justify-center gap-2">
-              {tabs.map((tab) => (
-                <button key={tab} onClick={() => setActiveTab(tab)} className={`text-xs px-6 py-2.5 rounded-full font-medium transition-all duration-300 ${activeTab === tab ? "bg-astro-gold text-sky-deep shadow-lg shadow-astro-gold/25" : "bg-cosmic-800/40 text-cosmic-200/40 border border-astro-gold/10 hover:text-astro-gold/70"}`}>{tab}</button>
-              ))}
-            </div>
+          <ScrollReveal animation="fadeUp">
+            <span className="tag mb-5 block">Live Sessions</span>
+          </ScrollReveal>
+          <ScrollReveal animation="fadeUp" delay={1}>
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-parchment-light leading-[1.1] mb-6">
+              Webinars
+            </h1>
+          </ScrollReveal>
+          <ScrollReveal animation="fadeUp" delay={2}>
+            <div className="accent-line" />
           </ScrollReveal>
         </div>
       </section>
 
-      <section className="section-padding !pt-8">
-        <div className="container-custom max-w-2xl mx-auto">
-          <ScrollReveal>
-            <motion.div whileHover={{ scale: 1.01 }} className="astro-card rounded-3xl p-10 md:p-14 text-center gold-border">
-              <motion.div animate={{ scale: [1, 1.1, 1], opacity: [0.6, 1, 0.6] }} transition={{ duration: 3, repeat: Infinity }} className="w-16 h-16 mx-auto mb-6 rounded-2xl bg-astro-gold/10 border border-astro-gold/20 flex items-center justify-center">
-                <svg className="w-8 h-8 text-astro-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="m15.75 10.5 4.72-4.72a.75.75 0 0 1 1.28.53v11.38a.75.75 0 0 1-1.28.53l-4.72-4.72M4.5 18.75h9a2.25 2.25 0 0 0 2.25-2.25v-9a2.25 2.25 0 0 0-2.25-2.25h-9A2.25 2.25 0 0 0 2.25 7.5v9a2.25 2.25 0 0 0 2.25 2.25Z" /></svg>
-              </motion.div>
-              <h2 className="text-xl md:text-2xl font-bold text-white mb-4">{activeTab === "Upcoming" ? "Upcoming Sessions" : activeTab === "Past" ? "Past Sessions" : "All Sessions"}</h2>
-              <p className="text-cosmic-200/40 leading-relaxed mb-8">Stay tuned for upcoming live webinars on Vedic Astrology and related topics. Follow us on social media for announcements.</p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <MagneticButton><Link href="/blog" className="btn-primary text-sm"><span>Explore Blog</span></Link></MagneticButton>
-                <MagneticButton><Link href="/courses" className="btn-secondary text-sm">View Courses</Link></MagneticButton>
-              </div>
-            </motion.div>
+      {/* Message */}
+      <section className="pb-20">
+        <div className="container-custom max-w-3xl">
+          <ScrollReveal animation="fadeUp">
+            <p className="text-parchment-muted text-base leading-relaxed font-sans">
+              Live webinars and interactive sessions are coming soon. Stay tuned
+              for announcements on upcoming sessions covering Vedic Astrology,
+              Numerology, and more.
+            </p>
           </ScrollReveal>
+        </div>
+      </section>
+
+      {/* Notify Me */}
+      <section className="pb-24 md:pb-32 border-b border-stone-faint/40">
+        <div className="container-custom max-w-3xl">
+          <ScrollReveal animation="fadeUp">
+            <p className="text-parchment-dim text-sm font-sans mb-8">
+              Join our community to get notified about upcoming webinars.
+            </p>
+            <MagneticButton>
+              <button className="btn-secondary">Notify Me</button>
+            </MagneticButton>
+          </ScrollReveal>
+        </div>
+      </section>
+
+      {/* Upcoming Topics */}
+      <section className="section-padding">
+        <div className="container-custom">
+          <ScrollReveal animation="fadeUp">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl text-parchment-light mb-16">
+              Upcoming Topics
+            </h2>
+          </ScrollReveal>
+
+          <motion.div
+            ref={topicsRef}
+            variants={staggerContainer}
+            initial="hidden"
+            animate={topicsInView ? "visible" : "hidden"}
+          >
+            {upcomingTopics.map((topic, i) => (
+              <motion.div
+                key={topic.num}
+                variants={staggerItem}
+                className={`flex items-baseline gap-6 sm:gap-10 py-7 ${
+                  i < upcomingTopics.length - 1
+                    ? "border-b border-stone-faint/40"
+                    : ""
+                }`}
+              >
+                <span className="text-saffron font-sans text-sm tabular-nums w-6 shrink-0">
+                  {topic.num}
+                </span>
+                <div className="flex-1">
+                  <h3 className="text-xl sm:text-2xl text-parchment leading-tight mb-1">
+                    {topic.title}
+                  </h3>
+                  <span className="text-parchment-faint text-xs font-sans tracking-wider uppercase">
+                    Coming Soon
+                  </span>
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
         </div>
       </section>
     </>

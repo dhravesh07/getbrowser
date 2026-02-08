@@ -1,514 +1,208 @@
 "use client";
 
-import { motion, useScroll, useTransform, useInView } from "framer-motion";
+import { motion, useInView, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import ScrollReveal from "@/components/ui/ScrollReveal";
 import { staggerContainer, staggerItem } from "@/lib/animations";
 
 interface Topic {
+  number: string;
   title: string;
   description: string;
-  icon: React.ReactNode;
 }
 
 const topics: Topic[] = [
   {
+    number: "01",
     title: "Vedic Astrology",
-    description:
-      "The ancient Indian system of astrology rooted in the Vedas, offering deep insights into life patterns and cosmic influences.",
-    icon: (
-      <svg
-        className="w-8 h-8"
-        viewBox="0 0 48 48"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        {/* Outer zodiac wheel */}
-        <circle
-          cx="24"
-          cy="24"
-          r="20"
-          stroke="currentColor"
-          strokeWidth="1.5"
-        />
-        <circle
-          cx="24"
-          cy="24"
-          r="14"
-          stroke="currentColor"
-          strokeWidth="1"
-          opacity="0.6"
-        />
-        {/* 12 zodiac segment lines */}
-        {[0, 30, 60, 90, 120, 150, 180, 210, 240, 270, 300, 330].map(
-          (angle) => {
-            const rad = (angle * Math.PI) / 180;
-            const x1 = 24 + 14 * Math.cos(rad);
-            const y1 = 24 + 14 * Math.sin(rad);
-            const x2 = 24 + 20 * Math.cos(rad);
-            const y2 = 24 + 20 * Math.sin(rad);
-            return (
-              <line
-                key={angle}
-                x1={x1}
-                y1={y1}
-                x2={x2}
-                y2={y2}
-                stroke="currentColor"
-                strokeWidth="1"
-                opacity="0.5"
-              />
-            );
-          }
-        )}
-        {/* Center dot */}
-        <circle cx="24" cy="24" r="2.5" fill="currentColor" opacity="0.8" />
-        {/* Small accent dots at cardinal points */}
-        <circle cx="24" cy="6" r="1.5" fill="currentColor" opacity="0.7" />
-        <circle cx="42" cy="24" r="1.5" fill="currentColor" opacity="0.7" />
-        <circle cx="24" cy="42" r="1.5" fill="currentColor" opacity="0.7" />
-        <circle cx="6" cy="24" r="1.5" fill="currentColor" opacity="0.7" />
-      </svg>
-    ),
+    description: "Ancient Indian system rooted in the Vedas",
   },
   {
+    number: "02",
     title: "Jyotish Shastra",
-    description:
-      "The science of light -- understanding celestial bodies and their impact on human affairs through time-tested methodologies.",
-    icon: (
-      <svg
-        className="w-8 h-8"
-        viewBox="0 0 48 48"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        {/* Central star burst */}
-        <circle cx="24" cy="24" r="4" fill="currentColor" opacity="0.9" />
-        {/* Radiating lines - 8 directions */}
-        {[0, 45, 90, 135, 180, 225, 270, 315].map((angle) => {
-          const rad = (angle * Math.PI) / 180;
-          const x1 = 24 + 7 * Math.cos(rad);
-          const y1 = 24 + 7 * Math.sin(rad);
-          const x2 = 24 + 18 * Math.cos(rad);
-          const y2 = 24 + 18 * Math.sin(rad);
-          return (
-            <line
-              key={angle}
-              x1={x1}
-              y1={y1}
-              x2={x2}
-              y2={y2}
-              stroke="currentColor"
-              strokeWidth={angle % 90 === 0 ? "2" : "1"}
-              strokeLinecap="round"
-              opacity={angle % 90 === 0 ? "0.9" : "0.5"}
-            />
-          );
-        })}
-        {/* Outer glow circle */}
-        <circle
-          cx="24"
-          cy="24"
-          r="21"
-          stroke="currentColor"
-          strokeWidth="1"
-          opacity="0.25"
-          strokeDasharray="3 3"
-        />
-        {/* Intermediate glow ring */}
-        <circle
-          cx="24"
-          cy="24"
-          r="13"
-          stroke="currentColor"
-          strokeWidth="0.75"
-          opacity="0.3"
-        />
-        {/* Small twinkle dots */}
-        <circle cx="24" cy="4" r="1" fill="currentColor" opacity="0.6" />
-        <circle cx="44" cy="24" r="1" fill="currentColor" opacity="0.6" />
-        <circle cx="24" cy="44" r="1" fill="currentColor" opacity="0.6" />
-        <circle cx="4" cy="24" r="1" fill="currentColor" opacity="0.6" />
-      </svg>
-    ),
+    description: "The science of light and celestial bodies",
   },
   {
+    number: "03",
     title: "Planetary Science",
-    description:
-      "Deep study of Navagraha -- the nine celestial bodies including Sun, Moon, Mars, Mercury, Jupiter, Venus, Saturn, Rahu, and Ketu.",
-    icon: (
-      <svg
-        className="w-8 h-8"
-        viewBox="0 0 48 48"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        {/* Planet body */}
-        <circle
-          cx="22"
-          cy="24"
-          r="10"
-          stroke="currentColor"
-          strokeWidth="1.5"
-          fill="currentColor"
-          fillOpacity="0.15"
-        />
-        {/* Planet band */}
-        <path
-          d="M14 20 C18 22, 26 22, 30 20"
-          stroke="currentColor"
-          strokeWidth="1"
-          opacity="0.5"
-          fill="none"
-        />
-        {/* Orbit ring - elliptical */}
-        <ellipse
-          cx="24"
-          cy="24"
-          rx="21"
-          ry="8"
-          stroke="currentColor"
-          strokeWidth="1"
-          opacity="0.4"
-          transform="rotate(-25 24 24)"
-          strokeDasharray="4 2"
-        />
-        {/* Small moon on orbit */}
-        <circle cx="40" cy="15" r="2.5" fill="currentColor" opacity="0.7" />
-        {/* Planet surface detail */}
-        <circle cx="19" cy="22" r="2" fill="currentColor" opacity="0.15" />
-        <circle cx="25" cy="27" r="1.5" fill="currentColor" opacity="0.1" />
-      </svg>
-    ),
+    description: "Study of Navagraha \u2014 the nine celestial bodies",
   },
   {
+    number: "04",
     title: "Numerology",
-    description:
-      "The mystical relationship between numbers and life events. Discover how numbers influence your destiny and decision-making.",
-    icon: (
-      <svg
-        className="w-8 h-8"
-        viewBox="0 0 48 48"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        {/* Mystical circle backdrop */}
-        <circle
-          cx="24"
-          cy="24"
-          r="20"
-          stroke="currentColor"
-          strokeWidth="0.75"
-          opacity="0.25"
-        />
-        {/* Number 3 - top center */}
-        <text
-          x="24"
-          y="16"
-          textAnchor="middle"
-          fill="currentColor"
-          fontSize="10"
-          fontWeight="bold"
-          opacity="0.9"
-          fontFamily="serif"
-        >
-          3
-        </text>
-        {/* Number 7 - bottom left */}
-        <text
-          x="14"
-          y="36"
-          textAnchor="middle"
-          fill="currentColor"
-          fontSize="10"
-          fontWeight="bold"
-          opacity="0.7"
-          fontFamily="serif"
-        >
-          7
-        </text>
-        {/* Number 9 - bottom right */}
-        <text
-          x="34"
-          y="36"
-          textAnchor="middle"
-          fill="currentColor"
-          fontSize="10"
-          fontWeight="bold"
-          opacity="0.7"
-          fontFamily="serif"
-        >
-          9
-        </text>
-        {/* Connecting triangle */}
-        <path
-          d="M24 8 L38 38 L10 38 Z"
-          stroke="currentColor"
-          strokeWidth="0.75"
-          fill="none"
-          opacity="0.3"
-        />
-        {/* Inner inverted triangle */}
-        <path
-          d="M17 18 L31 18 L24 32 Z"
-          stroke="currentColor"
-          strokeWidth="0.5"
-          fill="currentColor"
-          fillOpacity="0.05"
-          opacity="0.35"
-        />
-        {/* Center number 1 */}
-        <text
-          x="24"
-          y="27"
-          textAnchor="middle"
-          fill="currentColor"
-          fontSize="8"
-          fontWeight="bold"
-          opacity="0.5"
-          fontFamily="serif"
-        >
-          1
-        </text>
-      </svg>
-    ),
+    description: "Mystical relationship between numbers and life events",
   },
   {
+    number: "05",
     title: "Occult Science",
-    description:
-      "Explore hidden knowledge systems and esoteric practices that complement astrological understanding.",
-    icon: (
-      <svg
-        className="w-8 h-8"
-        viewBox="0 0 48 48"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        {/* Eye outline - almond shape */}
-        <path
-          d="M4 24 C10 12, 22 8, 24 8 C26 8, 38 12, 44 24 C38 36, 26 40, 24 40 C22 40, 10 36, 4 24Z"
-          stroke="currentColor"
-          strokeWidth="1.5"
-          fill="none"
-        />
-        {/* Iris */}
-        <circle
-          cx="24"
-          cy="24"
-          r="7"
-          stroke="currentColor"
-          strokeWidth="1.5"
-          fill="currentColor"
-          fillOpacity="0.12"
-        />
-        {/* Pupil / Third eye center */}
-        <circle cx="24" cy="24" r="3" fill="currentColor" opacity="0.85" />
-        {/* Inner light reflection */}
-        <circle cx="22" cy="22" r="1" fill="currentColor" opacity="0.4" />
-        {/* Radiating lines above (third eye activation) */}
-        <line
-          x1="24"
-          y1="4"
-          x2="24"
-          y2="1"
-          stroke="currentColor"
-          strokeWidth="1"
-          opacity="0.5"
-          strokeLinecap="round"
-        />
-        <line
-          x1="19"
-          y1="5"
-          x2="17.5"
-          y2="2"
-          stroke="currentColor"
-          strokeWidth="1"
-          opacity="0.35"
-          strokeLinecap="round"
-        />
-        <line
-          x1="29"
-          y1="5"
-          x2="30.5"
-          y2="2"
-          stroke="currentColor"
-          strokeWidth="1"
-          opacity="0.35"
-          strokeLinecap="round"
-        />
-      </svg>
-    ),
+    description: "Hidden knowledge systems and esoteric practices",
   },
   {
+    number: "06",
     title: "Horoscope & Kundli",
-    description:
-      "Birth chart analysis and interpretation. Learn to read and understand the cosmic blueprint of any individual.",
-    icon: (
-      <svg
-        className="w-8 h-8"
-        viewBox="0 0 48 48"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        {/* Outer diamond (rotated square - kundli shape) */}
-        <rect
-          x="24"
-          y="4"
-          width="28"
-          height="28"
-          rx="1"
-          transform="rotate(45 24 4)"
-          stroke="currentColor"
-          strokeWidth="1.5"
-          fill="none"
-        />
-        {/* Inner grid lines - horizontal */}
-        <line
-          x1="4.2"
-          y1="24"
-          x2="43.8"
-          y2="24"
-          stroke="currentColor"
-          strokeWidth="0.75"
-          opacity="0.5"
-        />
-        {/* Inner grid lines - vertical */}
-        <line
-          x1="24"
-          y1="4.2"
-          x2="24"
-          y2="43.8"
-          stroke="currentColor"
-          strokeWidth="0.75"
-          opacity="0.5"
-        />
-        {/* Diagonal lines forming the inner kundli divisions */}
-        <line
-          x1="4.2"
-          y1="4.2"
-          x2="43.8"
-          y2="43.8"
-          stroke="currentColor"
-          strokeWidth="0.75"
-          opacity="0.35"
-        />
-        <line
-          x1="43.8"
-          y1="4.2"
-          x2="4.2"
-          y2="43.8"
-          stroke="currentColor"
-          strokeWidth="0.75"
-          opacity="0.35"
-        />
-        {/* Center small diamond accent */}
-        <rect
-          x="24"
-          y="16"
-          width="11.3"
-          height="11.3"
-          rx="0.5"
-          transform="rotate(45 24 16)"
-          stroke="currentColor"
-          strokeWidth="1"
-          fill="currentColor"
-          fillOpacity="0.08"
-          opacity="0.6"
-        />
-        {/* Center dot */}
-        <circle cx="24" cy="24" r="1.5" fill="currentColor" opacity="0.6" />
-      </svg>
-    ),
+    description: "Birth chart analysis and cosmic blueprints",
   },
 ];
 
+/* ------------------------------------------------------------------ */
+/*  Single topic row (desktop editorial style)                         */
+/* ------------------------------------------------------------------ */
+function TopicRow({ topic, isLast }: { topic: Topic; isLast: boolean }) {
+  return (
+    <motion.div variants={staggerItem}>
+      <div className="group py-7 md:py-9">
+        <div className="grid grid-cols-12 gap-4 items-baseline">
+          {/* Number */}
+          <div className="col-span-2 md:col-span-1">
+            <span className="font-serif text-2xl md:text-3xl text-saffron/80 tabular-nums">
+              {topic.number}
+            </span>
+          </div>
+
+          {/* Title */}
+          <div className="col-span-10 md:col-span-4">
+            <h3 className="font-serif text-xl md:text-2xl text-parchment group-hover:text-saffron-light transition-colors duration-300">
+              {topic.title}
+            </h3>
+          </div>
+
+          {/* Description — sits to the right on wider screens */}
+          <div className="col-span-10 col-start-3 md:col-span-7 md:col-start-6">
+            <p className="font-sans text-sm md:text-base text-parchment-muted leading-relaxed mt-1 md:mt-0">
+              {topic.description}
+            </p>
+          </div>
+        </div>
+      </div>
+      {/* Separator line */}
+      {!isLast && (
+        <div className="h-px w-full" style={{ background: "rgba(184,115,51,0.12)" }} />
+      )}
+    </motion.div>
+  );
+}
+
+/* ------------------------------------------------------------------ */
+/*  Mobile scroll card                                                 */
+/* ------------------------------------------------------------------ */
+function TopicCard({ topic }: { topic: Topic }) {
+  return (
+    <div className="snap-start flex-shrink-0 w-[280px] p-6 border border-copper/[0.08] rounded-sm bg-void-surface">
+      <span className="block font-serif text-3xl text-saffron/70 mb-4">
+        {topic.number}
+      </span>
+      <h3 className="font-serif text-lg text-parchment mb-2">{topic.title}</h3>
+      <p className="font-sans text-sm text-parchment-muted leading-relaxed">
+        {topic.description}
+      </p>
+    </div>
+  );
+}
+
+/* ------------------------------------------------------------------ */
+/*  TopicsSection                                                      */
+/* ------------------------------------------------------------------ */
 export default function TopicsSection() {
   const sectionRef = useRef<HTMLDivElement>(null);
-  const gridRef = useRef<HTMLDivElement>(null);
-  const isInView = useInView(gridRef, { once: true, amount: 0.1 });
+  const listRef = useRef<HTMLDivElement>(null);
+  const isInView = useInView(listRef, { once: true, amount: 0.1 });
 
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ["start end", "end start"],
   });
 
-  const lineWidth = useTransform(scrollYProgress, [0, 0.5], ["0%", "100%"]);
+  /* Vertical accent line grows as section scrolls into view */
+  const lineHeight = useTransform(scrollYProgress, [0.1, 0.6], ["0%", "100%"]);
 
   return (
-    <section
-      ref={sectionRef}
-      className="section-padding relative overflow-hidden"
-    >
-      {/* Deep indigo/purple background */}
-      <div className="absolute inset-0 bg-gradient-to-b from-sky-midnight via-cosmic-950 to-sky-midnight" />
+    <section ref={sectionRef} className="section-padding relative overflow-hidden bg-void">
+      {/* Grain */}
+      <div className="grain-overlay pointer-events-none absolute inset-0" />
 
-      {/* Subtle radial glow */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(124,58,237,0.08)_0%,transparent_60%)]" />
-
-      {/* Animated horizontal golden line (cosmic-divider style) */}
-      <div className="absolute top-0 left-0 right-0 h-px flex justify-center">
+      {/* Vertical saffron accent line — desktop only */}
+      <div className="hidden lg:block absolute left-8 xl:left-16 top-0 bottom-0 w-px">
         <motion.div
-          style={{ width: lineWidth }}
-          className="h-full bg-gradient-to-r from-transparent via-astro-gold/50 to-transparent"
+          style={{ height: lineHeight }}
+          className="w-full bg-saffron/20 origin-top"
         />
       </div>
 
       <div className="container-custom relative">
-        {/* Section header */}
-        <div className="text-center max-w-2xl mx-auto mb-16">
+        {/* Section header — left-aligned */}
+        <div className="max-w-xl mb-16 md:mb-20">
           <ScrollReveal>
-            <span className="text-xs font-semibold text-astro-gold uppercase tracking-[0.25em] mb-4 block">
-              Areas of Study
-            </span>
+            <span className="tag mb-4 block">Areas of Study</span>
           </ScrollReveal>
           <ScrollReveal delay={1}>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-5 text-balance">
-              Explore the{" "}
-              <span className="gold-text">Branches of Knowledge</span>
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif text-parchment leading-tight">
+              The Branches of
+              <br />
+              <span className="gradient-text">Vedic Wisdom</span>
             </h2>
           </ScrollReveal>
           <ScrollReveal delay={2}>
-            <p className="text-cosmic-200/40 leading-relaxed">
-              Dive deep into the interconnected disciplines of Vedic wisdom.
-              Each branch offers unique perspectives on understanding cosmic
-              influences.
-            </p>
+            <div className="accent-line mt-6" />
           </ScrollReveal>
         </div>
 
-        {/* Topics grid */}
-        <motion.div
-          ref={gridRef}
-          variants={staggerContainer}
-          initial="hidden"
-          animate={isInView ? "visible" : "hidden"}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5"
-        >
-          {topics.map((topic) => (
-            <motion.div
-              key={topic.title}
-              variants={staggerItem}
-              className="group"
-            >
-              <div className="astro-card-hover p-7 h-full">
-                {/* Icon container with gold border */}
-                <div className="w-14 h-14 rounded-xl bg-astro-gold/10 border border-astro-gold/20 flex items-center justify-center text-astro-gold mb-5 group-hover:border-astro-gold/40 group-hover:bg-astro-gold/15 group-hover:scale-110 transition-all duration-500">
-                  {topic.icon}
-                </div>
+        {/* Desktop: editorial list layout */}
+        <div className="hidden md:block">
+          {/* Top border */}
+          <div className="h-px w-full mb-0" style={{ background: "rgba(184,115,51,0.12)" }} />
 
-                {/* Title */}
-                <h3 className="text-lg font-semibold text-white mb-3 group-hover:text-astro-sun transition-colors duration-300">
-                  {topic.title}
-                </h3>
+          <motion.div
+            ref={listRef}
+            variants={staggerContainer}
+            initial="hidden"
+            animate={isInView ? "visible" : "hidden"}
+          >
+            {topics.map((topic, i) => (
+              <TopicRow
+                key={topic.number}
+                topic={topic}
+                isLast={i === topics.length - 1}
+              />
+            ))}
+          </motion.div>
 
-                {/* Description */}
-                <p className="text-sm text-cosmic-200/40 leading-relaxed">
-                  {topic.description}
-                </p>
-              </div>
-            </motion.div>
-          ))}
-        </motion.div>
+          {/* Bottom border */}
+          <div className="h-px w-full mt-0" style={{ background: "rgba(184,115,51,0.12)" }} />
+        </div>
+
+        {/* Mobile: horizontal scroll-snap */}
+        <div className="md:hidden">
+          <div
+            className="flex gap-4 overflow-x-auto snap-x snap-mandatory pb-4 -mx-5 px-5"
+            style={{
+              scrollbarWidth: "none",
+              msOverflowStyle: "none",
+              WebkitOverflowScrolling: "touch",
+            }}
+          >
+            {topics.map((topic) => (
+              <TopicCard key={topic.number} topic={topic} />
+            ))}
+            {/* Spacer to allow last card to snap */}
+            <div className="flex-shrink-0 w-1" aria-hidden="true" />
+          </div>
+          {/* Scroll hint */}
+          <div className="flex items-center gap-2 mt-6">
+            <div className="flex gap-1">
+              {topics.map((_, i) => (
+                <div
+                  key={i}
+                  className={`h-px rounded-full transition-all ${
+                    i === 0 ? "w-6 bg-saffron/60" : "w-3 bg-parchment-faint/30"
+                  }`}
+                />
+              ))}
+            </div>
+            <span className="text-[10px] font-sans uppercase tracking-[0.15em] text-parchment-faint ml-2">
+              Scroll
+            </span>
+          </div>
+        </div>
       </div>
     </section>
   );

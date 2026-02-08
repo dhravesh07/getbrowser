@@ -4,18 +4,22 @@ import ClientLayout from "@/components/layout/ClientLayout";
 export default function NotFound() {
   return (
     <ClientLayout>
-      <section className="min-h-[80vh] flex items-center justify-center relative overflow-hidden">
-        <div className="absolute inset-0 star-field opacity-20" />
-        <div className="container-custom text-center relative z-10">
-          <div className="text-8xl font-bold gold-text mb-4">404</div>
-          <h1 className="text-2xl md:text-3xl font-bold text-white mb-4">
-            Lost in the Cosmos
+      <section className="min-h-[80vh] flex items-center justify-center">
+        <div className="container-custom text-center">
+          <h1
+            className="font-serif text-saffron leading-none mb-6"
+            style={{ fontSize: "clamp(80px, 15vw, 160px)" }}
+          >
+            404
           </h1>
-          <p className="text-cosmic-200/40 mb-8 max-w-md mx-auto">
-            The celestial page you seek does not exist in this astral plane.
+          <h2 className="text-2xl sm:text-3xl text-parchment-dim mb-4">
+            Page not found
+          </h2>
+          <p className="text-parchment-muted text-base font-sans mb-10 max-w-md mx-auto">
+            The stars couldn&apos;t align for this page.
           </p>
-          <Link href="/" className="btn-primary">
-            <span>Return Home</span>
+          <Link href="/" className="btn-secondary">
+            Return Home
           </Link>
         </div>
       </section>

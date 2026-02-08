@@ -6,6 +6,64 @@ import Link from "next/link";
 import ScrollReveal from "@/components/ui/ScrollReveal";
 import MagneticButton from "@/components/ui/MagneticButton";
 
+/* ------------------------------------------------------------------ */
+/*  Kundli Diamond Wireframe — positioned right, partially cropped     */
+/*  Built with pure CSS: a rotated div with inner crossing lines       */
+/* ------------------------------------------------------------------ */
+function KundliWireframe() {
+  return (
+    <div className="absolute -right-24 md:-right-16 lg:-right-8 top-1/2 -translate-y-1/2 pointer-events-none">
+      {/* Outer rotated square */}
+      <div
+        className="relative w-[280px] h-[280px] md:w-[360px] md:h-[360px] lg:w-[420px] lg:h-[420px]"
+        style={{ transform: "rotate(45deg)" }}
+      >
+        {/* Outer border */}
+        <div className="absolute inset-0 border border-copper/[0.08] rounded-[2px]" />
+
+        {/* Inner border */}
+        <div className="absolute inset-[22%] border border-copper/[0.06] rounded-[1px]" />
+
+        {/* Horizontal center line */}
+        <div
+          className="absolute left-0 right-0 top-1/2 h-px -translate-y-px"
+          style={{ background: "rgba(184,115,51,0.06)" }}
+        />
+
+        {/* Vertical center line */}
+        <div
+          className="absolute top-0 bottom-0 left-1/2 w-px -translate-x-px"
+          style={{ background: "rgba(184,115,51,0.06)" }}
+        />
+
+        {/* Diagonal line top-left to bottom-right */}
+        <div
+          className="absolute top-0 left-0 w-[141.4%] h-px origin-top-left"
+          style={{
+            transform: "rotate(45deg)",
+            background: "rgba(184,115,51,0.04)",
+          }}
+        />
+
+        {/* Diagonal line top-right to bottom-left */}
+        <div
+          className="absolute top-0 right-0 w-[141.4%] h-px origin-top-right"
+          style={{
+            transform: "rotate(-45deg)",
+            background: "rgba(184,115,51,0.04)",
+          }}
+        />
+
+        {/* Center dot */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-1.5 h-1.5 rounded-full bg-copper/10" />
+      </div>
+    </div>
+  );
+}
+
+/* ------------------------------------------------------------------ */
+/*  CTASection                                                         */
+/* ------------------------------------------------------------------ */
 export default function CTASection() {
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
@@ -13,77 +71,46 @@ export default function CTASection() {
     offset: ["start end", "end start"],
   });
 
-  const bgScale = useTransform(scrollYProgress, [0, 0.5], [0.85, 1]);
-  const bgOpacity = useTransform(scrollYProgress, [0, 0.3], [0, 1]);
+  const textY = useTransform(scrollYProgress, [0.2, 0.8], [30, -20]);
 
   return (
-    <section ref={ref} className="section-padding relative overflow-hidden">
+    <section
+      ref={ref}
+      className="relative overflow-hidden bg-void-deep py-20 md:py-28 lg:py-36"
+    >
+      {/* Grain */}
+      <div className="grain-overlay pointer-events-none absolute inset-0" />
+
+      {/* Kundli wireframe decoration — right side, partially cropped */}
+      <KundliWireframe />
+
       <div className="container-custom relative">
-        <motion.div
-          style={{ scale: bgScale, opacity: bgOpacity }}
-          className="relative rounded-3xl overflow-hidden"
-        >
-          {/* Base astro-card background with gold-border */}
-          <div className="absolute inset-0 astro-card rounded-3xl" />
-          <div className="absolute inset-0 rounded-3xl gold-border" />
+        <motion.div style={{ y: textY }} className="max-w-3xl">
+          {/* Main heading — large serif, the focal point */}
+          <ScrollReveal>
+            <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-[4.25rem] font-serif leading-[1.1] tracking-tight mb-6">
+              <span className="text-parchment">Begin Your</span>
+              <br />
+              <span className="gradient-text">Journey Into the Stars</span>
+            </h2>
+          </ScrollReveal>
 
-          {/* Star field pattern */}
-          <div className="absolute inset-0 star-field opacity-30" />
+          {/* Single line of muted description */}
+          <ScrollReveal delay={1}>
+            <p className="font-sans text-parchment-muted text-base md:text-lg max-w-md mb-10">
+              Explore the timeless wisdom of Vedic Astrology through modern,
+              structured learning.
+            </p>
+          </ScrollReveal>
 
-          {/* Radial gold glow effects */}
-          <div className="absolute top-1/4 left-1/3 w-80 h-80 bg-astro-gold/10 rounded-full blur-[120px] pointer-events-none" />
-          <div className="absolute bottom-1/4 right-1/3 w-64 h-64 bg-astro-gold/10 rounded-full blur-[100px] pointer-events-none" />
-
-          {/* Purple nebula glow */}
-          <div className="absolute top-0 right-1/4 w-96 h-96 bg-cosmic-700/10 rounded-full blur-[140px] pointer-events-none" />
-          <div className="absolute bottom-0 left-1/4 w-72 h-72 bg-cosmic-700/10 rounded-full blur-[100px] pointer-events-none" />
-
-          {/* Subtle gradient overlay */}
-          <div className="absolute inset-0 bg-gradient-to-br from-astro-gold/5 via-transparent to-cosmic-700/5" />
-
-          {/* Content */}
-          <div className="relative z-10 px-8 py-16 md:px-16 md:py-24 text-center">
-            <ScrollReveal>
-              <span className="text-xs font-semibold text-astro-gold uppercase tracking-[0.2em] mb-6 block">
-                Begin Your Journey
-              </span>
-            </ScrollReveal>
-
-            <ScrollReveal delay={1}>
-              <h2 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-white mb-6 text-balance">
-                Ready to Explore the{" "}
-                <span className="gold-text">Cosmic Blueprint?</span>
-              </h2>
-            </ScrollReveal>
-
-            <ScrollReveal delay={2}>
-              <p className="max-w-xl mx-auto text-cosmic-200/50 leading-relaxed mb-4">
-                Join Acharya Prateek Bhola and unlock the mysteries of Vedic
-                Astrology, Numerology, and Occult Science. Start learning today
-                with courses, webinars, and exclusive digital resources.
-              </p>
-            </ScrollReveal>
-
-            {/* Cosmic divider */}
-            <ScrollReveal delay={2}>
-              <div className="max-w-xs mx-auto cosmic-divider mb-10 mt-6" />
-            </ScrollReveal>
-
-            <ScrollReveal delay={3}>
-              <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                <MagneticButton>
-                  <Link href="/courses" className="btn-primary">
-                    <span>Browse Courses</span>
-                  </Link>
-                </MagneticButton>
-                <MagneticButton>
-                  <Link href="/membership" className="btn-secondary">
-                    Join Membership
-                  </Link>
-                </MagneticButton>
-              </div>
-            </ScrollReveal>
-          </div>
+          {/* Single CTA button */}
+          <ScrollReveal delay={2}>
+            <MagneticButton>
+              <Link href="/courses" className="btn-primary">
+                Explore Courses
+              </Link>
+            </MagneticButton>
+          </ScrollReveal>
         </motion.div>
       </div>
     </section>

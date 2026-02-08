@@ -1,84 +1,121 @@
 "use client";
 
-import { useState } from "react";
-import { motion, AnimatePresence, useInView } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import Link from "next/link";
 import ScrollReveal from "@/components/ui/ScrollReveal";
-import TextReveal from "@/components/ui/TextReveal";
 import { staggerContainer, staggerItem } from "@/lib/animations";
-import { blogPosts, blogCategories } from "@/lib/blog-data";
+import { blogPosts } from "@/lib/blog-data";
 
 export default function BlogListContent() {
-  const [activeCategory, setActiveCategory] = useState("All");
-  const gridRef = useRef<HTMLDivElement>(null);
-  const isInView = useInView(gridRef, { once: true, amount: 0.05 });
+  const listRef = useRef<HTMLDivElement>(null);
+  const listInView = useInView(listRef, { once: true, amount: 0.1 });
 
-  const filteredPosts = activeCategory === "All" ? blogPosts : blogPosts.filter((p) => p.category === activeCategory);
+  const featured = blogPosts[0];
+  const remaining = blogPosts.slice(1);
+
+  const formatDate = (dateStr: string) => {
+    const date = new Date(dateStr);
+    return date.toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    });
+  };
 
   return (
     <>
-      {/* Hero */}
-      <section className="relative pt-32 pb-16 overflow-hidden">
-        <div className="absolute inset-0">
-          <div className="absolute top-1/4 left-1/4 w-[400px] h-[400px] rounded-full bg-astro-gold/[0.05] blur-[120px]" />
-          <div className="absolute inset-0 star-field opacity-25" />
-        </div>
-        <div className="container-custom relative z-10 text-center">
-          <TextReveal><span className="text-xs font-semibold text-astro-gold uppercase tracking-[0.2em] mb-4 block">Insights & Articles</span></TextReveal>
-          <TextReveal delay={0.2}><h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-5">The <span className="gold-text">Astrology Blog</span></h1></TextReveal>
-          <TextReveal delay={0.4}><p className="max-w-lg mx-auto text-cosmic-200/50 leading-relaxed">Explore Vedic Astrology, Planetary Science, and Occult Science through in-depth articles by Acharya Prateek Bhola.</p></TextReveal>
-        </div>
-      </section>
-
-      {/* Category filter */}
-      <section className="pb-12">
+      {/* Page Header */}
+      <section className="pt-36 pb-16">
         <div className="container-custom">
-          <ScrollReveal>
-            <div className="flex flex-wrap justify-center gap-2">
-              {blogCategories.map((cat) => (
-                <button key={cat} onClick={() => setActiveCategory(cat)} className={`text-xs px-5 py-2.5 rounded-full font-medium transition-all duration-300 ${activeCategory === cat ? "bg-astro-gold text-sky-deep shadow-lg shadow-astro-gold/25" : "bg-cosmic-800/40 text-cosmic-200/40 border border-astro-gold/10 hover:text-astro-gold/70 hover:border-astro-gold/20"}`}>
-                  {cat}
-                </button>
-              ))}
-            </div>
+          <ScrollReveal animation="fadeUp">
+            <span className="tag mb-5 block">Blog</span>
+          </ScrollReveal>
+          <ScrollReveal animation="fadeUp" delay={1}>
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-parchment-light leading-[1.1] mb-6">
+              Writings on the Stars
+            </h1>
+          </ScrollReveal>
+          <ScrollReveal animation="fadeUp" delay={2}>
+            <div className="accent-line" />
           </ScrollReveal>
         </div>
       </section>
 
-      {/* Blog grid */}
-      <section className="section-padding !pt-0">
+      {/* Featured Post */}
+      {featured && (
+        <section className="pb-20">
+          <div className="container-custom">
+            <ScrollReveal animation="fadeUp">
+              <Link href={`/blog/${featured.slug}`} className="group block">
+                <article className="border-b border-stone-faint/40 pb-12">
+                  <div className="flex items-center gap-4 mb-5">
+                    <span className="tag">{featured.category}</span>
+                    <span className="text-parchment-faint text-xs font-sans">
+                      {formatDate(featured.date)}
+                    </span>
+                  </div>
+                  <h2 className="text-3xl sm:text-4xl md:text-5xl text-parchment-light leading-[1.15] mb-5 group-hover:text-saffron transition-colors duration-300">
+                    {featured.title}
+                  </h2>
+                  <p className="text-parchment-muted text-base leading-relaxed font-sans max-w-3xl mb-6">
+                    {featured.excerpt}
+                  </p>
+                  <span className="text-saffron text-sm font-sans tracking-wide group-hover:tracking-wider transition-all duration-300">
+                    Read article
+                  </span>
+                </article>
+              </Link>
+            </ScrollReveal>
+          </div>
+        </section>
+      )}
+
+      {/* Remaining Posts — List */}
+      <section className="pb-32">
         <div className="container-custom">
-          <motion.div ref={gridRef} variants={staggerContainer} initial="hidden" animate={isInView ? "visible" : "hidden"} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <AnimatePresence mode="wait">
-              {filteredPosts.map((post, i) => (
-                <motion.div key={post.slug} variants={staggerItem} layout initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }} transition={{ duration: 0.4, delay: i * 0.08 }}>
-                  <Link href={`/blog/${post.slug}`} className="block group h-full">
-                    <article className="astro-card-hover p-6 h-full flex flex-col">
-                      <div className="flex items-center gap-3 mb-4">
-                        <span className="text-[10px] font-semibold text-astro-gold uppercase tracking-wider px-3 py-1 rounded-full bg-astro-gold/10 border border-astro-gold/20">{post.category}</span>
-                        <span className="text-[10px] text-cosmic-200/30">{post.readTime}</span>
+          <motion.div
+            ref={listRef}
+            variants={staggerContainer}
+            initial="hidden"
+            animate={listInView ? "visible" : "hidden"}
+          >
+            {remaining.map((post) => (
+              <motion.div key={post.slug} variants={staggerItem}>
+                <Link href={`/blog/${post.slug}`} className="group block">
+                  <article className="py-8 border-b border-stone-faint/30 flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-2 sm:gap-8">
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center gap-4 mb-2">
+                        <span className="text-saffron text-xs font-sans tracking-wider uppercase">
+                          {post.category}
+                        </span>
+                        <span className="text-parchment-faint text-xs font-sans">
+                          {formatDate(post.date)}
+                        </span>
                       </div>
-                      <h2 className="text-lg font-semibold text-white mb-3 group-hover:text-astro-gold transition-colors duration-300 line-clamp-2">{post.title}</h2>
-                      <p className="text-sm text-cosmic-200/40 leading-relaxed mb-5 line-clamp-3 flex-1">{post.excerpt}</p>
-                      <div className="flex flex-wrap gap-1.5 mb-5">
-                        {post.tags.slice(0, 3).map((tag) => (<span key={tag} className="text-[10px] px-2.5 py-1 rounded-full bg-cosmic-800/50 text-cosmic-200/30 border border-cosmic-700/30">{tag}</span>))}
-                      </div>
-                      <div className="cosmic-divider mb-4" />
-                      <div className="flex items-center justify-between">
-                        <div className="flex items-center gap-2.5">
-                          <div className="w-7 h-7 rounded-full bg-gradient-to-br from-astro-gold to-astro-amber flex items-center justify-center"><span className="text-[10px] font-bold text-sky-deep">AP</span></div>
-                          <span className="text-xs text-cosmic-200/40">{post.author}</span>
-                        </div>
-                        <span className="text-xs text-cosmic-200/20">{post.date}</span>
-                      </div>
-                    </article>
-                  </Link>
-                </motion.div>
-              ))}
-            </AnimatePresence>
+                      <h3 className="text-xl sm:text-2xl text-parchment leading-snug mb-2 group-hover:text-saffron transition-colors duration-300">
+                        {post.title}
+                      </h3>
+                      <p className="text-parchment-muted text-sm font-sans leading-relaxed line-clamp-1">
+                        {post.excerpt}
+                      </p>
+                    </div>
+                    <span className="text-saffron/60 text-xs font-sans tracking-wide shrink-0 group-hover:text-saffron transition-colors duration-300">
+                      {post.readTime}
+                    </span>
+                  </article>
+                </Link>
+              </motion.div>
+            ))}
           </motion.div>
-          {filteredPosts.length === 0 && (<div className="text-center py-20"><p className="text-cosmic-200/40">No articles found in this category yet.</p></div>)}
+
+          {blogPosts.length === 0 && (
+            <div className="py-20 text-center">
+              <p className="text-parchment-muted font-sans">
+                No articles published yet.
+              </p>
+            </div>
+          )}
         </div>
       </section>
     </>
